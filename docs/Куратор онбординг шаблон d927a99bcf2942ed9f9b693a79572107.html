@@ -1,0 +1,751 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Куратор онбординг шаблон</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="d927a99b-cf29-42ed-9f9b-693a79572107" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🦅</span></div><h1 class="page-title" dir="auto">Куратор онбординг шаблон</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81fc-8d4a-fc7a4d6222bc" class="">Привет! Мы рады что ты в нашей команде ❤️ Это пространство поможет тебе быстрее ориентироваться</p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81c1-9ff1-de07c0bdd9b7" class="">
+</p></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8127-b96f-fe335877df27" class="toggle"><li><details open=""><summary><strong>Портрет куратора Университета Zerocoder</strong></summary><div style="display:contents" dir="auto"><p id="13d7cde5-de79-819c-aec0-cc7383a5acb9" class="">Куратор 3.0 Университета Zerocoder - это участники команды, который помогает студентам разобраться в теоретических и практических вопросах модуля, отвечает на вопросы связанные с работой и функциональностью конкретного инструмента, одновременно является экспертом данного инструмента.</p></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="13d7cde5-de79-813b-8524-f23dad790ec6"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Миссия куратора </strong>- организовать качественный friendly сервис в рамках модуля, получая который, студенты успевают осваивать материал, успешно выполняют домашние задания и вовремя получают ответы на свои вопросы!</div></figure></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-8131-8ba4-d834d1bfa28e" class="">Путь куратора в Университете Zerocoder</p></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="13d7cde5-de79-816a-8639-e402e75f7267"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Start - Junior - Midlle - Senior</div></figure></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-814d-9155-d6eb6f9e061b" class=""><strong>Очень скоро каждый куратор университета становится:</strong> </p></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81d3-b972-e06942493a9d" class="bulleted-list"><li style="list-style-type:disc">Экспертом в инструменте, который может сделать кастомный функционал и рассказать об этом своим студентам</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-812e-a9b0-c7f70878728e" class="bulleted-list"><li style="list-style-type:disc">Zerocod-другом каждого студента, который следит за актуальностью инструмента и делится полезными фичами</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-814b-bf6d-d963b927c3f0" class="bulleted-list"><li style="list-style-type:disc">Понимающим товарищем, который всегда спешит на помощь, знает, что без его ответа, человек сам вряд ли сможет реализовать задуманное</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81a8-a370-c67601e53f05" class="bulleted-list"><li style="list-style-type:disc">Super-юзером модуля курса, который первым отсматривает уроки и хорошо в них ориентируется</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-818b-8ace-e7f7cfcf0e95" class="bulleted-list"><li style="list-style-type:disc">Напарником методиста, который вовремя подсказывает, что стоит поправить в уроках</li></ul></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81c7-899c-db1c4d2b00be" class="toggle"><li><details open=""><summary><strong>Требования к работе куратора</strong></summary><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="13d7cde5-de79-81d5-85e3-da7f6ebcc813"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Удаленная работа<br/><br/>Время работы Куратора в рамках Университета (в это время от любого коллеги из Университета может прилететь вопрос)  <br/>с 10 до 20 (пн-пт) <br/><br/>Время работы Куратора в Чатах со студентами<br/>с 10 до 18 (пн-пт)<br/>с 10 до 16 (сб), при достижении благоприятной атмосферы в потоке, возможно размещение сообщение в пятницу вечером об отдыхе куратора в субботу<br/>вс - выходной<br/><br/>Оформление как самозанятый или ИП<br/><br/>Зачисление ЗП <br/>либо с 25-30 число месяца<br/>либо с 5-15 число месяца<br/><br/>Оплачиваемый отпуск<br/>- предупредить за 1 мес Лида Кураторов<br/>- длительность отпуска не более 14 дней в течение 6 мес<br/>- отпуск полностью оплачивается. Премия Куратора рассчитывается по статистическим данным куратора за период активной работы в этом месяце</div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="13d7cde5-de79-8122-a25b-d231fb184049"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">SLA по ДЗ <br/><a href="https://www.notion.so/SLA-6f3ccd83eca44b9f90642510e0aef305?pvs=21">Выполнение SLA по ДЗ </a> </div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="13d7cde5-de79-8170-a064-da95af3358cc"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">SLA по Чатам<br/><a href="https://www.notion.so/SLA-c3ff7773399e477e9c28e89b7d32e67f?pvs=21">Выполнение SLA по Чатам </a> </div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="13d7cde5-de79-81c9-a341-ea54ef1a445b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">CSI по ДЗ<br/><a href="https://www.notion.so/CSI-01a2f1d74038466e86e5c466061b91e1?pvs=21">Выполнение CSI по ДЗ </a> </div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="13d7cde5-de79-813a-9d36-c9940ba830c8"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">CSI по ДЗ<br/><a href="https://www.notion.so/CSI-23571bfefa434b8288385cf19cc48a18?pvs=21">Выполнение CSI по Чатам </a> </div></figure></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8153-affa-f17d795983e6" class="toggle"><li><details open=""><summary><strong>Ежедневный план куратора</strong></summary><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8133-99c2-caea7bfa889a" class="toggle"><li><details open=""><summary><strong>1. Ответь на практические и теоретические вопросы студентов, дай развернутую обратная связь </strong></summary><div style="display:contents" dir="auto"><p id="13d7cde5-de79-8198-a907-f1059b533577" class=""><mark class="highlight-teal_background">Где могут поступать вопросы?</mark></p></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8149-a864-eebd2324ff40" class="bulleted-list"><li style="list-style-type:disc">На платформе <a href="https://university.zerocoder.ru/teach/control/answers/">Геткурс</a> при выполнении ДЗ</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8133-b19a-c67d18c9574c" class="bulleted-list"><li style="list-style-type:disc">В Учебных и личных чатах в Telegram</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8187-9999-fc6f2bef0434" class="bulleted-list"><li style="list-style-type:disc">От VIP аккаунтов в чате Zero Кураторы</li></ul></div><div style="display:contents" dir="auto"><blockquote id="13d7cde5-de79-81f8-aacf-e1fe87dea3e2" class=""><strong>Обратная связь в обучении —</strong> комментарий в формате текст/аудио/видео/консультация по вопросу студента. Задача — закрыть нерешенные вопросы студента и показать, как идут дела на пути к достижению <strong>учебной цели.</strong></blockquote></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81d6-ae9a-f7196dae8ad6" class=""><br/><mark class="highlight-teal_background">Какие могут быть вопросы и ответы?</mark></p></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="13d7cde5-de79-81b0-8751-ede477cf5452"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Примеры вопроса для куратора:</strong> <br/>1. #вопрос можете показать как загрузить свой шрифт? я так понимаю это надо через css делать? как-то напрямую где-то писать либо ссылку на файл где-то прописывать?<br/><em>Добрый день Павел! Посмотрите в настройках. Там есть кнопка кастомных шрифтов. Уверен, что все получится! <br/>2. </em>#вопрос Добрый день, вопрос по Glide. В уроке написано, что можно получить доступ к &quot;разовой геолокации&quot;, не могли бы вы пояснить, что это значит?<br/><em>Добрый день Мария! За перемещением не получится, только разовая геолокация (в адало нет), </em><em><a href="https://docs.glideapps.com/all/reference/components/pickers/location-component">ссылка </a></em><em>на документацию в глайде по работе с геолокацией</em></div></figure></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-8175-850a-cf8f92364111" class="">
+</p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81da-a601-f51a7bad82e5" class=""><mark class="highlight-teal_background">Как отвечать на вопросы? </mark></p></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81c4-9238-c15222a8d46a" class="bulleted-list"><li style="list-style-type:disc"><strong> </strong>Общайтесь со студентом как с хорошим знакомым, уважительно</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8106-983d-c2ca7f7b37d5" class="bulleted-list"><li style="list-style-type:disc">Давайте ответы на вопросы максимально полно, со всеми скриншотами и уточнением когда именно в уроке разбирался тот или иной момент </li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-812d-8bff-ca1a3fb5b569" class="bulleted-list"><li style="list-style-type:disc">Уточняйте всегда неясные моменты в вопросах студентов, запрашивай скриншоты и пояснения, чтобы дать максимально точный ответ </li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8108-9cc7-fd690b26986f" class="bulleted-list"><li style="list-style-type:disc">Предупредите студента, что вернетесь к его вопросу, через какое-то время, если тебе необходимо подумать над решением данной задачи</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8170-bfea-ca7df10f0bc9" class="bulleted-list"><li style="list-style-type:disc">Всегда отвечайте при помощи Reply с сообщением вопроса, чтобы владелец вопроса получил свой ответ</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81eb-8461-c434b78acc18" class="bulleted-list"><li style="list-style-type:disc">Будьте честны со студентами, если вы чего-то не знаете - это нормально, про это лучше честно написать и попробовать разобраться совместно</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81ad-973c-ef8426726d49" class="bulleted-list"><li style="list-style-type:disc">Не забывайте также о моральной поддержке студентов, периодически отправляй мотивационные фразы, например:<div style="display:contents" dir="auto"><p id="13d7cde5-de79-815f-8ae3-c9a9857ab277" class="">— &quot;Да, урок непростой, но мы справимся!&quot;</p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-816c-9ba3-c147b246663e" class="">— &quot;У вас обязательно все получится!&quot;</p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81cb-b1fe-f126eebbe7b9" class="">— &quot;Классный вопрос! Давайте побольше таких!&quot; </p></div></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-819d-88bf-eb0bd4479bd7" class="bulleted-list"><li style="list-style-type:disc">Создавай в чате атмосферу нетворкинга, задавай открытые вопросы, например:</li></ul></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81a6-a0de-e64e90e2f41b" class="">— &quot;Ребята, как настроение?&quot; </p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-8198-b2cc-fc7c689f5223" class="">— &quot;Дедлайн уже близко! Кому нужна помощь?&quot; </p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81e2-87bc-e30b303eca8c" class="">— &quot;Не переживайте, что что-то не получилось с первого раза! Объяснить еще разок?&quot;</p></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="13d7cde5-de79-81f7-9106-fe23d7687d24"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Лайфхак<br/></strong>Опытные преподаватели собирают свою базу удачных шаблонов ОС, которую потом переиспользуют с разными учениками, чтобы каждый раз не искать правильные слова и формулировки.</div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="13d7cde5-de79-81fa-9484-feb892afb2fc"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Для вас разработана супер стратегия отделом продукта</strong></div></figure></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81ac-bdb2-f599779b5931" class="toggle"><li><details open=""><summary><strong>2. Проверь домашние задания студентов на GetCourse без просрочек!</strong></summary><div style="display:contents" dir="auto"><p id="13d7cde5-de79-8132-9ae4-c77ed1e0dab3" class=""><mark class="highlight-teal_background">Задача проверяющего</mark> </p></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81c4-9e6b-e2c15c98183f" class="bulleted-list"><li style="list-style-type:disc">Помочь студенту достичь лучшего результата</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81c1-aabb-f8e3d7c1d92c" class="bulleted-list"><li style="list-style-type:disc">Дать чёткий фидбэк по работе в рамках задания, вписывая в него свой опыт работы</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8121-b7f0-c1f7c9c94dc0" class="bulleted-list"><li style="list-style-type:disc">Закрыть пробелы в области, которую студент осваивает</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81b7-9afd-c82b2e16ce90" class="bulleted-list"><li style="list-style-type:disc">Помочь усвоить непонятный материал из лекций</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81cd-bac4-de6ed5bb5b59" class="bulleted-list"><li style="list-style-type:disc">Помочь закрепить и последовательно развить навыки</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81aa-91e6-d7d2c633ab63" class="bulleted-list"><li style="list-style-type:disc">Помочь разобраться, где студент преуспел, а где нужно поднажать</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8142-854e-eff6458de43a" class="bulleted-list"><li style="list-style-type:disc">Мотивировать и не давать опустить руки</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8148-a5a8-f763639dd5e1" class="bulleted-list"><li style="list-style-type:disc">Научить студента решать задачи</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8101-b43c-eb765d0075fd" class="bulleted-list"><li style="list-style-type:disc">Не показать, как просто сделать приложение или сервис, а достичь понимания как работает инструмент, что при помощи него можно реализовать, какие есть ограничения и для каких решений лучше подходит данный инструмент</li></ul></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="13d7cde5-de79-81bf-a838-c13e9e27c37f"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Проверить поступившее ДЗ нужно в течение 24 часов! Иначе можно попасть в таблицу просрочек, которая прямым образом повлияет на премию Куратора за месяц</strong></div></figure></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-819a-8aa6-ccb78fde2793" class="">
+</p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81bf-9ab9-ef8367307feb" class="">Структура ответа на ДЗ студента:</p></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81d4-81a1-c5364c7c7dd5" class="toggle"><li><details open=""><summary><strong>Поприветствуйте студента и обратитесь по имени</strong></summary><div style="display:contents" dir="auto"><p id="13d7cde5-de79-8188-b87b-f1ba764246fa" class="">Приятное вступление с личным обращением и пожеланием, всегда к месту</p></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="13d7cde5-de79-812e-b9b2-fa1a334c0fa1"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">ПРИМЕР<br/>”Доброе утро Екатерина”<br/>”Здравствуйте Владимир” </div></figure></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-817a-bb7e-f2c1ed19ae36" class="toggle"><li><details open=""><summary><strong>Не будьте токсичными в отношении студента</strong></summary><div style="display:contents" dir="auto"><p id="13d7cde5-de79-8125-9046-f7ade0dc0849" class="">Помните, мы оцениваем работу, а не студента, поэтому указывая на ошибки, пишите спокойно и мягко, не теряя тон уважения. Не воспринимайте агрессию на свой счёт и не отвечайте тем же. Мы за конструктивный диалог. </p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-816b-b405-d948c6256d4d" class="">Не шутите в отношении работы студента, и даже намёк на шутку могут воспринять в штыки. Убедитесь, что студент понял тему и выполнил задание верно, а потом уже можно улыбнуться С ним, а не НАД ним!</p></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8118-93d7-c829b27a1747" class="toggle"><li><details open=""><summary><strong>Давайте обратную связь по принципу бутерброда: сначала найдите, за что похвалить, потом дайте критику, но закончите подбадриванием</strong></summary><div style="display:contents" dir="auto"><p id="13d7cde5-de79-8116-b713-d8635f4d9c85" class="">Следуйте правилу конструктивной критики. Стройте её в формате «начать-прекратить-продолжить». Учиться бывает тяжело, таким подходом вы замотивируете студента двигаться дальше, несмотря на возможные затыки. <br/>Найдите сильные стороны, идею в работе и дайте такой фидбэк, чтобы студент поверил в свои силы и сам захотел исправить ошибки.<br/>Каждое слово должно иметь ценность. Если указываете на ошибку, скажите как ее исправить, или где найти информацию.<br/>Энтузиастам дайте чуть больше свободы. Более закрытым ребятам — ненавязчивые комментарии и предложения по исправлению.<br/>Всегда разъясняйте, почему что-то правильно, а что-то нужно подправить. Именно в этом состоит процесс обучения.</p></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8182-8b98-ea551636766a" class="toggle"><li><details open=""><summary><strong>Грамотность важна</strong></summary><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81d4-8937-f8a28488198a" class="">Следите за опечатками, грамотностью и логикой предложения. Перепроверьте ответ перед отправкой. Конечно, не нужно упарываться до уровня Пушкина с деепричастными оборотами, но базовая грамотность важна</p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81cd-b759-e8f9081fce52" class="">Можете скачать в помощь <a href="http://languagetool.org/ru">Language Tool</a>. Он не видит всё, но хорошо помогает</p></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8139-802b-d9b531313f26" class="toggle"><li><details open=""><summary><strong>Пожелайте успехов вашему студенту</strong></summary><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81dd-897d-d0e77dedd642" class="">Наличие пожеланий в успешном прохождении курса, благодарность за ОС, отличный мотиватор для студента двигаться дальше.</p></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="13d7cde5-de79-81a0-98e9-c98837a0c764"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">ПРИМЕР<br/>&quot;Только вперед, у вас все получится&quot;<br/>&quot;Я желаю вам успехов в дальнейшем прохождении курса&quot;</div></figure></div></details></li></ul></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="13d7cde5-de79-8133-9dda-dbedaa1f9bc6"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Качество работы куратора отражается в его ответах студенту. Помните, что студенты поставят вам отличную оценку за работу, когда получат от вас не шаблонный ответ по ДЗ.<br/>Идеальный ответ студенту: <br/>”Приветствую Екатерина! Отлично, вы подключили сервер РФ для хранения личных данных, ДЗ принято! Впереди вас ждет настройка сторонних сервисов через API. Желаю успехов!” </strong></div></figure></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-815e-a6e4-c3e8f7b02337" class="toggle"><li><details open=""><summary><strong>3.</strong> <strong>Проведи 40-минутные запланированные индивидуальные консультации</strong> </summary><div style="display:contents" dir="auto"><p id="13d7cde5-de79-817e-9f19-c2da9711c5a1" class="">Студентам доступны консультации с куратором для решения вопросов, а так же поднятия мотивации.  </p></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-812b-8b85-f4855c8fcdc8" class="toggle"><li><details open=""><summary><strong>4. Размести групповую динамику в своих чатах</strong></summary><div style="display:contents" dir="ltr"><figure id="13d7cde5-de79-811e-8474-dace1c4862e9"><div class="source"><a href="%D0%9A%D1%83%D1%80%D0%B0%D1%82%D0%BE%D1%80%20%D0%BE%D0%BD%D0%B1%D0%BE%D1%80%D0%B4%D0%B8%D0%BD%D0%B3%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD/video5515993950.mp4">https://prod-files-secure.s3.us-west-2.amazonaws.com/cb34792c-5307-4bc6-89fb-3b0b1116f689/1a56ec4b-9e4f-4bea-8394-93671ff95820/video5515993950.mp4</a></div></figure></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81d1-965e-ce9fb5715ea8" class="toggle"><li><details open=""><summary><strong>Приветствие в новом чате</strong></summary><div style="display:contents" dir="auto"><p id="13d7cde5-de79-8186-b21a-d5f0b441bdc5" class="">Добрый день уважаемые зерокодеры 🎉 Меня зовут [Имя], куратор …. потока</p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-813e-b76c-d3b50bea9984" class="">Я здесь, чтобы помочь вам достичь лучшего результата в обучении, поделиться своим опытом, помочь закрепить и развить навыки 👌</p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-8191-89b7-effd60eabd25" class="">На этой неделе мы мягко погрузимся в вводную часть обучения, не стесняйтесь задавать вопросы и обязательно расскажите о себе в чате</p></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81df-b51e-e1edf67b54a1" class="bulleted-list"><li style="list-style-type:disc">Как вас зовут?</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81d4-91b1-f56da508335f" class="bulleted-list"><li style="list-style-type:disc">Чем вы занимаетесь?</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81ad-b5b3-df41ce85527a" class="bulleted-list"><li style="list-style-type:disc">Почему решили обучиться Зерокодингу?</li></ul></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81b2-8cae-e166c3862ebc" class="">Всем желаю продуктивной недели)</p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81e7-98c5-d26927fccc8d" class="">🙏 Напутствие от меня лично</p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81d8-8949-efbadcc668f3" class="">&quot;Стать настоящим зерокодером - это значит научиться самостоятельно решать задачи, научиться понимать как работают инструменты 0code, находить решения и с каждым шагом становиться лучшим&quot;</p></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8138-b90c-d55b96221855" class="toggle"><li><details open=""><summary><strong>Понедельник</strong> </summary><div style="display:contents" dir="auto"><blockquote id="13d7cde5-de79-81df-8d43-c8993042b718" class=""><mark class="highlight-red_background">Обязательно напишете план на неделю для студентов. Пример ниже, адаптируйте его под ситуацию и этап потока. <br/>Под примером - расписание вашего потока. <br/>Под расписанием - список уроков по каждому курсу (очень удобно копировать и вставлять)</mark></blockquote></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81ee-bbd1-ce9819e7f088" class=""><strong>ПРИМЕР</strong></p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81ed-876b-c8150057f971" class="">Всем желаю продуктивной недели 🙌</p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-818c-8f99-cdf82d31bd9c" class="">План у нас с вами будет следующим:</p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-8181-b288-e0df1086a962" class="">✔️ Даем бой домашним заданиям, на которых вы подвисли 👍</p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81f6-9222-ff2b0c17208b" class="">✔️ Сегодня для вас откроется урок - G05 — Создаем базу пользователей<br/>Вы создадите базу пользователей и внедрите первый простой функционал. Отображение экранов пользователей и избранного.</p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81e1-9d91-f0b083334ea2" class="">✔️ В среду для вас откроется урок - A09 Пуши. Настроите пуши для пользователей и для админов. А еще спросите юзеров, согласны ли они получать от нас пуши.</p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-8111-8da1-c89c4a7f4a9b" class="">✔️ В пятницу для вас откроется урок - A10 Регистрация аккаунтов разработчика, подготовка к публикации. Зарегистрируете аккаунты разработчика, подготовите приложение к загрузке в Store.<br/>Всем успехов! <br/>📢 Напоминаю, что на этой неделе состоится QA по модулю UX/UI 20.03.2023 в 18:00 пож-та начните готовить вопросы заранее</p></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="13d7cde5-de79-811f-b2b5-f6fad313fb4d"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Смотрим расписание своего потока здесь - <a href="https://docs.google.com/spreadsheets/d/1eMZLiKMuqmUJ0MzqUkXXP0avjjVCTkDinx5HI4Yl3c4/edit?pli=1#gid=1518113835">https://docs.google.com/spreadsheets/d/1eMZLiKMuqmUJ0MzqUkXXP0avjjVCTkDinx5HI4Yl3c4/edit?pli=1#gid=1518113835</a></div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="13d7cde5-de79-81c5-bc1b-f7fdda718b35"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Список уроков для копирования<div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81d3-acdb-f2c80ef955f7" class="toggle"><li><details open=""><summary>Мобилка курс Глайд 2.0 Адало 3.0</summary><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8100-9fc2-f3ad7014c278" class="bulleted-list"><li style="list-style-type:disc">W01 Урок onboarding <br/>Поймете, как и где будет проходить обучение</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81d8-90a9-e8b9723c3dc1" class="bulleted-list"><li style="list-style-type:disc">U01 Мобильные приложения. Из чего они состоят?<br/>Узнаете, из чего состоят мобильные приложения, какие есть компоненты. Разберетесь в том, чем отличается кнопка от экшена, а Toolbar от Tab bar</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8136-b3e8-f6470406ff76" class="bulleted-list"><li style="list-style-type:disc">U02 Whimsical. Знакомство и интерфейс<br/>Зарегистрируетесь в Whimsical. Изучите интерфейс сервиса</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81df-8989-f8cc4b775d82" class="bulleted-list"><li style="list-style-type:disc">U03 User Flow. Пользовательские сценарии<br/>Узнаете, что такое User Flow. Создадите свою первую схему пользовательского сценария</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81e6-ab7a-c5b330232de9" class="bulleted-list"><li style="list-style-type:disc">U04 Вайрфреймы и их назначение<br/>Узнаете, что такое вайрфреймы и зачем они нужны. Создадите вайрфреймы к пользовательскому сценарию “Создание заказа + Привязка исполнителя”</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8126-8837-d1adc47e321f" class="bulleted-list"><li style="list-style-type:disc">U05 Визуальный стиль<br/>Ознакомитесь с различными визуальными стилями и узнаете, что такое мудборд</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81fe-9714-ea7614945fd5" class="bulleted-list"><li style="list-style-type:disc">U06 Шрифты и цвета<br/>Узнаете, как работать со шрифтами и цветом</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81f4-aae1-f56c21bd5010" class="bulleted-list"><li style="list-style-type:disc">U07 Знакомство с Figma<br/>Освоите интерфейс и базовые инструменты Figma</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81df-9909-f45fa763ad13" class="bulleted-list"><li style="list-style-type:disc">U08 Дизайн-концепт приложения (часть 1)<br/>Узнаете о сервисах по поиску иконок и картинок. Подготовите необходимые составляющие для дизайн-концепта</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81f0-8fee-ebbe52f71a38" class="bulleted-list"><li style="list-style-type:disc">U09 Дизайн-концепт приложения (часть 2) <br/>Доделаете дизайн-концепт  нашего первого мобильного приложения </li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81d9-9f5b-fef20df1d2d2" class="bulleted-list"><li style="list-style-type:disc">U10 Дизайн-концепт приложения. Персональные приложения <br/>Разберетесь с тем, что такое персональное приложение, и создадите его дизайн-концепт</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81dc-913c-ee50da0804c2" class="bulleted-list"><li style="list-style-type:disc">U11 Дизайн-проект приложения. Корпоративные приложения<strong><br/></strong>Создадите дизайн-концепт корпоративного приложения</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81bb-9621-cdc541588cb2" class="bulleted-list"><li style="list-style-type:disc">U12 Дизайн-проект приложения. Онлайн-обучение<br/>Создадите дизайн-концепт приложения для онлайн-обучения</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-816b-90ac-fc9556fd41bf" class="bulleted-list"><li style="list-style-type:disc">U13 Дизайн-проект приложения. Соцсети<br/>Создадите дизайн-концепт социальной сети</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8159-ace1-f9a65857e710" class="bulleted-list"><li style="list-style-type:disc">U14 Дизайн-проект приложения. E-commerce приложение<br/>Создадите дизайн-концепт e-commerce приложения</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81de-9e93-eecc291000b9" class="bulleted-list"><li style="list-style-type:disc">U15 Управление проектом в Whimsical<br/>Разберете методы и способы управления проектом в Whimsical</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8135-99ef-ee880305bd82" class="bulleted-list"><li style="list-style-type:disc">G01 Знакомство с Glide<br/>Узнаете о возможностях и ограничениях Glide, познакомитесь с приложениями, созданными на Glide, зарегистрируетесь в Glide, создадите приложение на основе шаблона и познакомитесь с базовым интерфейсом Glide</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-819a-9d6d-ef6b34757040" class="bulleted-list"><li style="list-style-type:disc">G02 Проектирование приложения и работа с данными<br/>Спроектируете объектную модель предметной области и workflow процесса регистрации, разработаете структуру данных в Google-таблицах, импортируете её в Glide, настроите связи</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-815c-9dde-d8d8ae6b7d95" class="bulleted-list"><li style="list-style-type:disc">G03 Знакомство с компонентами экранов и реализация workflow регистрации<br/>Установите базовые настройки приложения, научитесь добавлять компоненты на экран, задавать действия на кнопки, работать с настройками видимости</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8191-8715-e4482656177d" class="bulleted-list"><li style="list-style-type:disc">G04 Настройка экранов отображения и редактирования списков<br/>Создадите экраны выбора, добавления и редактирования кондоминиумов и домов, сформируете заявку на присоединение, научитесь отправлять запрос на регистрацию админу</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8164-8d25-c4ae227ad082" class="bulleted-list"><li style="list-style-type:disc">G05 Создание экрана для выбора функций и формы работы с запросами<br/>Соберете и настроите главный экран, создадите форму принятия или отклонения запроса, научитесь работать со списком действий</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8158-9979-d4ab01e7683e" class="bulleted-list"><li style="list-style-type:disc">G06 Сценарии тестирования, массивы и поле if-then-else<br/>Спроектируете тестовые данные для проверки разных сценариев пользователя и реализуете эти сценарии, научитесь работать с массивами и полем if-then-else.<br/>❗️ Уважаемые студенты, обращаю ваше внимание, что в данном уроке есть обязательная анкеты оценки курса от 1 до 10 баллов готовы ли вы рекомендовать наш курс </li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8109-8b1d-ecb2e528ffb3" class="bulleted-list"><li style="list-style-type:disc">G07 Настройка видимости экранов для разных сценариев<br/>Научитесь искать и находить ошибки, реализуете для авторизированного пользователя возможность выбрать другую роль и кондоминиум</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8108-b931-cbe2f7e308ea" class="bulleted-list"><li style="list-style-type:disc">G08.1 Новости и мероприятия, часть 1<br/>Спроектируете разделы Новости и Мероприятия, научитесь создавать “красивый” формат отображения даты и скрывать прочитанные новости из ленты пользователя</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-811d-8759-f4b70172b52c" class="bulleted-list"><li style="list-style-type:disc">G08.2 Новости и мероприятия, часть 2<br/>Настроите голосование и рейтинг мероприятий</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8133-995d-f9c2d56a4621" class="bulleted-list"><li style="list-style-type:disc">G09 Совместные закупки<br/>Реализуете функционал совместных закупок, научитесь использовать графики в приложении</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-818c-a04b-f5d815a9bd62" class="bulleted-list"><li style="list-style-type:disc">A01 Регистрация в Adalo. Базовый интерфейс, типы экранов, создание экрана и добавление компонентов<br/>Узнаете о возможностях и ограничениях Adalo, освоите базовый интерфейс инструмента, создадите первый экран приложения</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81b5-ab08-fb0a1e7dd223" class="bulleted-list"><li style="list-style-type:disc">A02. Коллекции в Adalo. Настройка действий для кнопок<br/>Научитесь работать с базой данных</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-818c-9fed-de567ceb6cea" class="bulleted-list"><li style="list-style-type:disc">A03. Splash-экран, анимация, стартовые экраны и экраны завершения регистрации<br/>Создадите Splash-экран с анимацией, соберете и настроите стартовые экраны для заказчиков и исполнителей, создадите экраны завершения регистрации</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81dd-9a8f-e265bd967783" class="bulleted-list"><li style="list-style-type:disc">A04. Простые и кастомные списки, навигация<br/>Создадите и настроите простой список категорий услуг, а также кастомный список исполнителей, поймете, как передаётся информация между экранами, научитесь работать с навигацией приложения</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81f2-97b2-c487067f2431" class="bulleted-list"><li style="list-style-type:disc">A05. Экраны профиля и редактирования профиля, модальные окна<br/>Разберетесь с тем, как передаётся информация со списка к экрану отдельного его элемента, соберете и настроите экраны мастера, профиля клиента и исполнителя, редактирования профиля и аватарки, реализуете для заказчика возможность добавлять новую задачу, а для исполнителя — возможность отредактировать категории, в которых он работает</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81f4-9301-d202ac4e8be1" class="bulleted-list"><li style="list-style-type:disc">A06. Отклики и чат со стороны заказчика<br/>Реализуеье для заказчика возможность предлагать задачу исполнителю, соберете и настроите чат для взаимодействия между клиентами и исполнителями со стороны клиента</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8190-97d7-dcca4d808739" class="bulleted-list"><li style="list-style-type:disc">A07. Отклики и чат со стороны исполнителя<br/>Настроите отклики и чат со стороны исполнителя, отсортируете отклики по цене и отфильтруем задачи по статусу</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-811e-8ad6-fea854ab2a28" class="bulleted-list"><li style="list-style-type:disc">ВЫПУСКНОЙ ПРОЕКТ</li></ul></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8187-8593-ccb7995fc945" class="toggle"><li><details open=""><summary>FlutterFlow</summary><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8166-af3b-f22cff73b93b" class="bulleted-list"><li style="list-style-type:disc">Анкета на старте<br/>Чтобы качественно стартануть, мы должны знать все о ваших ожиданиях и целях. Это поможет нам вовремя корректировать программу, делать ее более насыщенной, интересной для вас и результативной</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81d0-bc0d-d445985d1502" class="bulleted-list"><li style="list-style-type:disc">FF0 — Onboarding<br/>Поймете, как и где будет проходить обучение</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8140-afc3-fcf3d1c2cd22" class="bulleted-list"><li style="list-style-type:disc">FF1 —  FlutterFlow: первые шаги<br/>Сегодня вы узнаете, что такое FlutterFlow и чем от отличается от Flutter. Помимо этого, поговорим о том, почему же FlutterFlow — один из лучших конструкторов на данный момент. А ещё вы создадите свой первый проект в FlutterFlow и подключите его к  Firebase</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8107-94d9-edd1fd3414b5" class="bulleted-list"><li style="list-style-type:disc">FF2 —  Верстка экранов регистрации и авторизации.  Бэкенд: первое касание<br/>Узнаете об особенностях верстки во FF. Заверстаем страницы входа и авторизации. Научимся создавать авторизацию по номеру телефона. Научимся верстать приложение по макету в Figma</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81af-b86a-d969b61cc326" class="bulleted-list"><li style="list-style-type:disc">FF3 — Верстка главного экрана и работа с данными<br/>Сверстаете и настроите главный экран приложения. Научитесь верстать экраны с динамичными данными. Научитесь строить схему для базы данных. Научитесь делать запросы к БД и выводить данные</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8192-a682-c5ea5edfc98f" class="bulleted-list"><li style="list-style-type:disc">FF4 — Навигация<br/>Поймете, как работает навигация в FlutterFlow. Разберетесь в экшенах навигации и анимации перемещения. Разберетесь с NavBar. Научитесь использовать кастомные иконки</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8164-93c0-f43243d1fe86" class="bulleted-list"><li style="list-style-type:disc">FF5 — Функция Local State. Кэширование данных<br/>Поймете, что такое кэш и как выводить кэшированные данные в список. Изучите функцию Local State. Изучите добавление условий (Conditionals)</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81a0-a2d9-ea21bf37d97e" class="bulleted-list"><li style="list-style-type:disc">FF6 — Верстка &quot;Страница категории&quot; и &quot;Страница продукта”<br/>Разберетесь с тем, что такое Passing data. Поймете, как ее использовать и для чего она нужна. Разберетесь с фильтрацией запросов. Сверстаете страницу категории и страницу продукта</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8108-9fd4-d1aa0b41a2e7" class="bulleted-list"><li style="list-style-type:disc">FF7 — Верстка страницы “Корзина”<br/>Разберетесь с тем, что такое Data types. Поймете, как использовать эту функцию и для чего она нужна. Сверстаете страницу корзины</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-812a-a1ee-e2e429a60d5c" class="bulleted-list"><li style="list-style-type:disc">FF8 — Работа над корзиной. Финал<br/>Настроите выбор адреса доставки и введение промокода</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8180-b42c-e2a3043f1f09" class="bulleted-list"><li style="list-style-type:disc">FF9 — Оформление заказа<br/>Поймете, как устроен процесс оформления заказа, как настроить взаимодействие внутри БД для осуществления заказа. Потренируетесь верстать Bottom Sheet</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81dd-b0f7-c19aa0c64699" class="bulleted-list"><li style="list-style-type:disc">FF10 — Экран профиля<br/>Повторите процесс создания экрана и верстки на примере экрана профиля и экрана заказов. Лучше разберетесь в настройке условий</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-813c-98bd-fe2c5f80e5d8" class="bulleted-list"><li style="list-style-type:disc">FF11 — Фильтры<br/>Научитесь настраивать поиск. Научитесь настраивать фильтрацию</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8104-8e1e-fb747a29d80a" class="bulleted-list"><li style="list-style-type:disc">FF12 — Google карты<br/>Узнаете, что такое API-токен. Познакомитесь с Google cloud и научитесь работать с Google-карты</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8160-b253-e915b3dd29bf" class="bulleted-list"><li style="list-style-type:disc">FF13 — API. Знакомство<br/>Узнаете,  что такое API  и как им пользоваться в FlutterFlow</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8171-b6e7-cd20e3429fe4" class="bulleted-list"><li style="list-style-type:disc">FF14 - API и UI интерфейс<br/>Узнаете, как выводить результаты запросов к API</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8142-9442-eff64479c610" class="bulleted-list"><li style="list-style-type:disc">FF15 - Знакомство с кастомными функциями и кодом<br/>Поймете, зачем нужны кастомные функции, научитесь создавать и настраивать их. Узнаете, какие бывают  математические операторы, и научитесь их применять</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-818b-8e15-cbe64d640517" class="bulleted-list"><li style="list-style-type:disc">FF16 - Условные ветвления<br/>Поймете, что такое условные ветвления и зачем они нужны. Научитесь использовать основные условные операторы</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8106-99b8-d06cb7dcedac" class="bulleted-list"><li style="list-style-type:disc">FF17 - Циклы<br/>Поймете, что такое циклы, научитесь их применять</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8110-8e66-cebff4304786" class="bulleted-list"><li style="list-style-type:disc">FF18 - Вывод Custom Function и Custom Action в интерфейс<br/>Научитесь использовать Custom Action и Custom Functiоn во Frontend</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8187-a41f-e52d05777ebe" class="bulleted-list"><li style="list-style-type:disc">FF19 - Знакомство с кастомными виджетами<br/>Поймёте, зачем используются кастомные виджеты, где находить библиотеки для кастомных виджетов</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-816b-8969-ec95e6fd9230" class="bulleted-list"><li style="list-style-type:disc">FF20 - Создаём виджеты<br/>Научитесь создавать простые виджеты. Создадите виджеты для отображения QR-кода и банковской карты</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81b0-9593-e4601ebe82aa" class="bulleted-list"><li style="list-style-type:disc">FF21 - Продолжаем создавать виджеты<br/>Научитесь создавать более сложные виджеты. Создадите виджет-календарь</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-816e-89cc-df1d06d433d8" class="bulleted-list"><li style="list-style-type:disc">FF22 - Продумывание стартап идеи, подготовка к MVP<br/>Поймете, как и зачем писать техническое задание (ТЗ). Узнаете об этапах разработки и поймете, как правильно их проходить</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81b6-a2d2-fa0cdd8d9f10" class="bulleted-list"><li style="list-style-type:disc"><strong>FF23- Финальный проект</strong></li></ul></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-810d-a5df-f3f440d574c8" class="toggle"><li><details open=""><summary>Web-разработчик РФ</summary><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8103-b87e-c81346c27f76" class="bulleted-list"><li style="list-style-type:disc">W01 - New Onboarding<br/>Узнаете, как круто будет проходить наше обучение </li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81d9-8259-f5fd0e09ca52" class="bulleted-list"><li style="list-style-type:disc">T01 - Tilda. Регистрация и обзор шаблонов<br/>Познакомитесь с no-code инструментом Tilda</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-814c-8b45-eeb0324ba5a6" class="bulleted-list"><li style="list-style-type:disc">T02-Tilda. Cоздаем портфолио<br/>Создадите свое портфолио в Tilda</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8115-a8ff-f8b2a3b5033a" class="bulleted-list"><li style="list-style-type:disc">Т03- Tilda. Остальные блоки сайта портфолио<br/>Доделаете свое портфолио в Tilda</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-818f-a370-eb75b1fff1ef" class="bulleted-list"><li style="list-style-type:disc">Т04-Tilda. Создание портфолио на заказ. Часть 1<br/>Создадите портфолио специалиста из “мягкой” ниши</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-815d-8845-e5616581d1f0" class="bulleted-list"><li style="list-style-type:disc">Т05-Tilda. Создание портфолио на заказ. Часть 2<br/>Создадите портфолио специалиста из “мягкой” ниши</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-812f-9b9c-c501b694689a" class="bulleted-list"><li style="list-style-type:disc">T06-Tilda. Интеграция сервисов и техническая настройка сайта. Навигация по уроку<br/>Настроите SEO, CRM и Jivosite. Узнаете, как подключить домен. И поймете, что означают все эти слова</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81af-810b-ce62c0ae8d29" class="bulleted-list"><li style="list-style-type:disc">Т07- Tilda. Итоговый урок модуля <br/>Повторите все, что узнали. Подготовитесь к зероблокам. </li></ul></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81c5-be5d-ecf5dc80815f" class="toggle"><li><details open=""><summary>Web-разработчик МИР</summary><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8110-9b8a-dcb72dd18340" class="bulleted-list"><li style="list-style-type:disc">W01 - New Onboarding<br/>Узнаете, как круто будет проходить наше обучение</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81e0-8860-d69af99ec542" class="bulleted-list"><li style="list-style-type:disc">Figma - Какие бывают сайты, какие задачи они решают, что такое веб-приложение, чем оно отличается от сайта, показ примеров того, что будет собрано во время курса</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-819a-ba77-dcb4ce5f295d" class="bulleted-list"><li style="list-style-type:disc">Figma - Знакомство с Figma, Регистрация, Интерфейс сервиса</li></ul></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81a8-8632-eef5162a1c49" class="toggle"><li><details open=""><summary>Web-разработчик МИР+РФ</summary><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-814c-ad0a-c81e06b4f84e" class="bulleted-list"><li style="list-style-type:disc">W01 - New Onboarding<br/>Узнаете, как круто будет проходить наше обучение</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81b8-a8f7-c56ca01741f5" class="bulleted-list"><li style="list-style-type:disc">T01 - Tilda. Регистрация и обзор шаблонов<br/>Познакомитесь с no-code инструментом Tilda</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81df-b5b1-db1064c3bac3" class="bulleted-list"><li style="list-style-type:disc">T02-Tilda. Cоздаем портфолио<br/>Создадите свое портфолио в Tilda</li></ul></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81fc-b8f3-de5813df41d6" class="toggle"><li><details open=""><summary>Управление Зерокод Разработкой </summary></details></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81ea-a4a1-d04b7cbfbcc1" class="toggle"><li><details open=""><summary>Глобал курс (не актуально, архив) </summary><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8113-90ba-f96c241a986c" class="bulleted-list"><li style="list-style-type:disc">W01 Урок onboarding.<br/>Поймете, как и где будет проходить обучение</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8100-b103-fc65365e8e0c" class="bulleted-list"><li style="list-style-type:disc">W02 Как эффективно учиться.<br/>Узнаете, что такое стратегии обучения и какие инструменты могут помочь справиться с барьерами дистанционного обучения</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81d1-8e25-c14f32e1e5cf" class="bulleted-list"><li style="list-style-type:disc">W03 Программа курса и кто такие зерокодеры.<br/>Узнаете, что такое зерокодинг, и кто такой зерокодер</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8161-b460-cc762320b630" class="bulleted-list"><li style="list-style-type:disc">D00 Регистрация, установка и основы Figma.<br/>Скачаем и установим Figma на компьютер, зарегистрируемся в приложении, освоим основной инструментарий</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81f2-913a-d2fe4627deb5" class="bulleted-list"><li style="list-style-type:disc">D01 Добро пожаловать в Figma.<br/>Познакомитесь с самым популярным, мощным и простым в использовании - графическим редактором Figma. Изучите редактор так, чтобы уверенно производить авторизацию, установите его себе на компьютер. Научитесь ориентироваться в редакторе и пользоваться его главными инструментами для создания дизайна</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81b6-bdfe-f12e7926e4c1" class="bulleted-list"><li style="list-style-type:disc">D02 Подготовка к верстке.<br/>Познакомитесь с видами сайтов, какими они бывают. Узнаете что такое референсы, где их искать и как использовать. Также узнаете об  инструментах, которые в разы упростят вам работу</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-814a-9653-ecf77290c006" class="bulleted-list"><li style="list-style-type:disc">D03 Верстка прототипа.<strong><br/></strong>Оживим прототип картинками и сделаем готовый сайт. Создадим адаптивные версии сайта для планшетов и мобильных устройств. Финализируем работу созданием Ui kit</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-810b-948e-c487c43a4595" class="bulleted-list"><li style="list-style-type:disc">D04 Практика: Отрисовка дизайна живого сайта.<br/>Перерисуем в Figma половину дизайна живого сайта. Научимся работать с функцией Letter spacing - Интервал между буквами и line height - высота линии</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-812a-a6d4-c854e7f66834" class="bulleted-list"><li style="list-style-type:disc">D05 Практика 2: Отрисовка дизайна живого сайта</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-818a-8567-f7c9d6da5a1b" class="bulleted-list"><li style="list-style-type:disc">D06 Создаем проект на Webflow | часть 1.<br/>Ознакомитесь с техническим заданием клиента. Сделаете прототип на основе информации из задания.<mark class="highlight-red"> Начнете создавать свое личное портфолио</mark></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81af-a8be-c8af2fe3afc2" class="bulleted-list"><li style="list-style-type:disc">D07 Создаем проект на Webflow | часть 2.<br/>Найдете и скачаете референсы для прототипа. Выберете те референсы которыми будете вдохновляться при детализации прототипа. Отрисуете референсы, которые выбрали для прототипа</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-810e-a014-cdc8efb217ff" class="bulleted-list"><li style="list-style-type:disc">D08 Создаем проект на Webflow | часть 3.<br/>Преобразите наш прототип. Добавите визуал и детализацию для элементов</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81d0-b0ae-f4b55fc1443b" class="bulleted-list"><li style="list-style-type:disc">D09 Создаем проект на Webflow | часть 4.<br/>Доработаете десктоп: подровняете размеры, зададите отступы и расстояния. Финализируете десктоп и перейдете к созданию адаптивов и ui kit`a</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8114-96ed-e9bc34857eeb" class="bulleted-list"><li style="list-style-type:disc">WF01 Вводный урок.<br/>Познакомитесь с крутым инструментом для верстки сайтов Webflow. Создадите свой аккаунт. Познакомитесь с базовыми понятиями WEBa HTML и CSS . Разберем структуру веб страниц.</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8132-9ae8-ddd9c9d9ec23" class="bulleted-list"><li style="list-style-type:disc">WF02 Элементы Webflow.<br/>Разберетесь в интерфейсе Webflow и изучите основные элементы</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8184-8a4a-ede52cb4791b" class="bulleted-list"><li style="list-style-type:disc">WF03 Работа с элементами Webflow. Часть 1.<br/>Познакомитесь подробнее с элементами Webflow, научитесь работать с колонками, гридами, линк блоками и див блоками</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8144-a4e7-fd176d668455" class="bulleted-list"><li style="list-style-type:disc">WF04 Работа с элементами Webflow. Часть 2.<br/>Познакомитесь подробнее с оставшимися элементами Webflow, а именно научитесь работать со списками, текстовыми блоками, формами и слайдером</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-815f-8d9a-f149397f6384" class="bulleted-list"><li style="list-style-type:disc">WF05 Классы, позиционирование, единицы измерения.<br/>Поймете, зачем элементам нужны классы. Научитесь выбирать вид позиционирования в зависимости от задачи. Изучите единицы измерения</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8148-9193-ff5671e2a344" class="bulleted-list"><li style="list-style-type:disc">WF06 Анимация. Триггеры страницы.<br/>Разберетесь в анимации страницы. Узнаете, что такое Lottie-анимация. Добавите в наш проект анимацию при движении мышки по экрану, скроллинге и загрузке страницы</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8138-a9cf-fc1d967a7a50" class="bulleted-list"><li style="list-style-type:disc">WF07 Анимация. Триггеры элемента.<br/>Разберетесь в анимации элементов. Узнаете, что такое стандартные анимации Webflow. Добавите в наш проект появляющееся при скроллинге меню</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81f8-8684-f98d7f459ec8" class="bulleted-list"><li style="list-style-type:disc">WF08 Верстка проекта из Figma. Десктопная версия.<br/>Начнете верстать итоговый проект. Создадите меню и главную страницу</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81f6-a2d6-ee4a722f5c0e" class="bulleted-list"><li style="list-style-type:disc">WF09 Верстка проекта из Figma. Десктопная версия. Часть 2.<br/>Продолжите верстать итоговый проект. Создадите блоки “Последние работы” и “Отзывы”.</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8169-96a7-ffc541a7695c" class="bulleted-list"><li style="list-style-type:disc">WF10 Верстка проекта из Figma. Десктопная версия. Часть 3.<br/>Закончите верстать итоговый проект в десктопной версии. Создадите блоки “Обо мне” и “Связаться со мной”</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81ee-9194-c10c2c790067" class="bulleted-list"><li style="list-style-type:disc">WF11 Верстка проекта из Figma. Мобильная версия.<br/>Адаптируете итоговый проект под мобильные устройства. Сделаете кастомное меню, планшетную версию, вертикальную и горизонтальную версии для мобильных устройств</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8161-91fb-ef83969edd25" class="bulleted-list"><li style="list-style-type:disc">WF12 Анимации в итоговом проекте.<br/>Добавите анимацию и завершите работу над итоговым проектом</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8160-a71f-e5e36882f919" class="bulleted-list"><li style="list-style-type:disc">WF13 Загрузка итогового проекта.<br/>Весь модуль мы с вами собирали проект в Webflow, пришло время сдачи проекта</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81ad-a4fe-d9d8aa23ce77" class="bulleted-list"><li style="list-style-type:disc">BB01 Создаем проект для Bubble | часть 1.<br/>Начнем создавать<strong> </strong>проект маркетплейса для реализации на Bubble. Сделаем скриншоты из Яндекс Маркет и загрузим их в Figma. Отрисуем экраны “Регистрация” и “Настройки”</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8156-88d0-f5df676466b6" class="bulleted-list"><li style="list-style-type:disc">BB02 Создаем проект на Bubble | часть 2.<br/>Отрисуем главную страницу, каталог, меню и чат с поддержкой</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8167-8c26-ee5ac554928b" class="bulleted-list"><li style="list-style-type:disc">BB03 Создаем проект на Bubble | часть 3.<br/>Отрисуем остальные экраны. Сделаем адаптивные версии маркетплейса. Создадим Ui Kit для: Десктопа/ Планшета/ Телефона</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-810e-b7d6-d2055db505e1" class="bulleted-list"><li style="list-style-type:disc">BB04 Интерфейс Bubble: где, что и почему.<br/>Вы уже знаете, где в Bubble находятся панели инструментов и настройки проекта. Рассмотрим, что с этим можно делать</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81ce-b919-ed96b8de6550" class="bulleted-list"><li style="list-style-type:disc">BB05 Интерфейс Bubble: Settings, Logs, Базы данных.<br/>Разберемся с настройками приложения. Узнаем, что и как можно делать с элементами. Поймем, как устроены базы данных</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81a2-b0f7-f878f98a286f" class="bulleted-list"><li style="list-style-type:disc">BB06 Анализ приложения и юзер-флоу. <br/>Узнаем, из каких разделов состоит маркетплейс Яндекс.Маркет. Поймем, что из себя представляют эти разделы с точки зрения Bubble-разработчика</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81a6-a1d4-e8295bb78720" class="bulleted-list"><li style="list-style-type:disc">BB07 Проектирование базы данных.<br/>Спроектируем базу данных маркетплейса</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81a1-868e-e17ea7fba680" class="bulleted-list"><li style="list-style-type:disc">BB08 Вёрстка главной страницы. Хедер.<br/>Создадим хедер маркетплейса</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8108-acf0-e2a6490774cb" class="bulleted-list"><li style="list-style-type:disc">BB09 Создание “входной группы” приложения.<br/>Создадим “входную группу” маркетплейса. Настроим рабочие процессы и плагин VK</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81dc-a77a-ea3fc805c30f" class="bulleted-list"><li style="list-style-type:disc">BB10 Верстка личного кабинета.<br/>Доделаем хедер и входную группу. Создадим личный кабинет в маркетплейсе и настроим рабочие процессы. Создадим кастомные чекбоксы</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8197-b442-fb47f311308b" class="bulleted-list"><li style="list-style-type:disc">BB11 Разделение прав доступа внутри приложения: продавец-покупатель.<br/>Создадим scroll-меню, раздел “Мои товары” для продавцов маркета. Добавим возможность создавать и изменять товары, а также запретим доступ покупателей к этой странице</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81b8-8948-c2aef9abff93" class="bulleted-list"><li style="list-style-type:disc">BB12 Подключение плагинов в приложение.<br/>Добавим в маркетплейс плагины для полосы прокрутки, всплывающих уведомлений и поиска товаров</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8109-a65d-f7ef8f589efe" class="bulleted-list"><li style="list-style-type:disc">BB13 Вёрстка главной страницы. Рекламные баннеры и каталог.<br/>Узнаем два способа создания баннеров. Добавим в проект баннер и каталог</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81d6-ae49-fc5186cd4db1" class="bulleted-list"><li style="list-style-type:disc">BB14 Вёрстка страницы продукта и страницы справки.<br/>Соберём страницу продукта и справку. Установим плагин для увеличения изображения</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81db-afbc-e9b3ed739739" class="bulleted-list"><li style="list-style-type:disc">BB15 Вёрстка страниц “Избранное” и “Корзина”.<br/>Настроим процесс добавления товара в Избранное. Создадим страницу Избранное, выведем на нее продукты из базы данных Избранное пользователя. Создадим и настроим страницу Корзина</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-817b-aebc-d2e6e789ceb0" class="bulleted-list"><li style="list-style-type:disc">BB16 Фильтрация на главной странице и поиск товаров.<br/>Поймем, как отобразить на странице только те товары, которые нам нужны, а не все подряд. Создадим несколько видов фильтров: по категориям, характеристикам товара и поисковому запросу</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8148-a2fe-e21706d8eaa2" class="bulleted-list"><li style="list-style-type:disc">BB17 Каталог и навигация в нем, чат с поддержкой.<br/>Создадим каталог и чат поддержки</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81d2-b927-fa35a93f238d" class="bulleted-list"><li style="list-style-type:disc">BB18 Оформление заказов, оплата через ЮКассу и страница “Мои Заказы”.<br/>Модифицируем страницу Корзины, подготовим базу данных для оплаты, подключим плагин YooMoney и создадим страницу “Мои заказы”</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8184-9fad-e0fbe4306852" class="bulleted-list"><li style="list-style-type:disc">BB19 Хранение Персональных данных по <strong>152-ФЗ. Подключение к MySQL-server.<br/></strong>Подключим внешнюю базу данных для хранения персональных данных пользователей</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8111-a1b4-e0ef03df8b91" class="bulleted-list"><li style="list-style-type:disc">BB20 API-интеграция.<br/>Узнаем, что такое API-интеграции. Создадим интеграцию с базой федеральной налоговой службы</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-817c-82fb-edb362f6416e" class="bulleted-list"><li style="list-style-type:disc">BB21 Подключение к платному аккаунту и привязка домена.<br/>Узнаем, как создавать домен и переходить на платный тариф Bubble</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8183-8115-c18af767c058" class="bulleted-list"><li style="list-style-type:disc">BB22 Аналитика и передача приложения заказчику.<br/>Подключим к приложению аналитику. Протестируем наше приложение и доведём его “до ума”. Узнаем, как передать приложение заказчику</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-814e-9dbd-f0b84cc14996" class="bulleted-list"><li style="list-style-type:disc">BB23 Загрузка итогового проекта.<br/>Весь модуль мы с вами собирали проект в Bubble, пришло время сдачи проекта </li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81d0-b5f6-f6de5e0e5abb" class="bulleted-list"><li style="list-style-type:disc">F01 Добро пожаловать на Fiverr.<br/>Вы сможете ориентироваться на платформе, подбирать подходящие под нишу категории и определять успешные ГИГи</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-812f-b73b-db171dc713a4" class="bulleted-list"><li style="list-style-type:disc">F02 Регистрация на платформе и рейтинг исполнителей.<br/>Зарегистрируетесь на платформе и оформите свой профиль. Узнаете про рейтинг и уровни аккаунтов на платформе</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81dc-8a63-d9d45bdaac64" class="bulleted-list"><li style="list-style-type:disc">F03 Создаем свой первый ГИГ.<br/>Создадите свой первый Гиг</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81f7-b606-f7dcf6c9926d" class="bulleted-list"><li style="list-style-type:disc">F04 Запускаем свой ГИГ.<br/>Узнаете, как запустить свой ГИГ и начать получать реальные заказы</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8178-92ef-fd5ce387ef74" class="bulleted-list"><li style="list-style-type:disc">F05 Выполняем первый проект.<br/>Узнаете этапы выполнения проекта и процесс получения оплаты</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81cc-a7ce-ffbaf5f944d0" class="bulleted-list"><li style="list-style-type:disc">F06 Как ладить с клиентами.<br/>Узнаете особенности взаимодействия с клиентами платформы Fiverr</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81eb-812e-e5723b8df0c6" class="bulleted-list"><li style="list-style-type:disc">F07 Фриланс-биржа. FL.<br/>Зарегистрируетесь на российской фриланс-бриже FL и узнаете о её особенностях</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81cf-8fb0-f836878a0216" class="bulleted-list"><li style="list-style-type:disc">F08 Фриланс-биржа. Профи.ру<br/>Зарегистрируемся на российской фриланс-бирже Профи.ру и узнаем о её особенностях</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81a2-9bcc-c49a91d5020b" class="bulleted-list"><li style="list-style-type:disc">F09 Фриланс-биржа. Я.Услуги<br/>Зарегистрируемся на российской фриланс-бирже Я.Услуги и узнаем о её особенностях</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81c9-aea3-ef1c3aa87b72" class="bulleted-list"><li style="list-style-type:disc">F10 Telegram-чаты.<br/>Узнаем популярные Telegram-чаты и каналы, в которых можно найти заказы</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81df-9bdd-d65ff73b1bd0" class="bulleted-list"><li style="list-style-type:disc">F11 Резюме и портфолио для зерокодера на русском языке.<br/>Создадим свое резюме и портфолио на русском языке</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81ee-94ad-c8e34526db00" class="bulleted-list"><li style="list-style-type:disc">F12 Сопроводительное письмо.<br/>Научимся составлять сопроводительные письма</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81aa-8e28-c6f3bd7624ac" class="bulleted-list"><li style="list-style-type:disc">F13 Резюме на английском языке.<br/>Создадим свое резюме на английском языке</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81cb-85e5-cc7f97f69454" class="bulleted-list"><li style="list-style-type:disc">F14 Сопроводительное письмо на английском.<br/>Создадим сопроводительное письмо на английском языке</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81a9-885c-c08963371c55" class="bulleted-list"><li style="list-style-type:disc">F15 Коммуникация с заказчиком на английском<br/>Узнаем, как общаться с заказчиками на английском языке на различных фриланс-биржах. Научимся вести эффективную коммуникацию с клиентом</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-816e-be7e-d0dfb1baf149" class="bulleted-list"><li style="list-style-type:disc">F16 Смета, или как поставить ценник на свои работы.<br/>Узнаем, как определить стоимость проекта и как общаться с заказчиками</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8178-b14d-cdbacffad71c" class="bulleted-list"><li style="list-style-type:disc">F17 Таймменеджмент и проджект-менеджмент.<br/>Научимся разбивать большой проект на части, оформлять задачи и выстраивать диаграмму Ганта для структуризации и отслеживания выполнения задач</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8136-b96e-f8b8bdd99349" class="bulleted-list"><li style="list-style-type:disc">F18 Юридические лайфхаки для работы на фрилансе.<br/>Узнаем, какие есть варианты оформления деятельности, и какой подойдет тебе больше всего</li></ul></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8180-a1a1-ffa0f2357680" class="toggle"><li><details open=""><summary>Агент курс (не актуально, архив) </summary><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-810b-8175-d350acce28cf" class="bulleted-list"><li style="list-style-type:disc">W01 - New onboarding<br/>Поймете, как и где будет проходить обучение</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81bf-9b3d-de9dd75aa663" class="bulleted-list"><li style="list-style-type:disc">A01 — Планирование спринта<br/>В этом уроке вы узнаете об одном очень эффективном инструменте планирования - спринте</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81ec-a6b0-d8fa2b4b345c" class="bulleted-list"><li style="list-style-type:disc">A02 — Чат-бот в Botmother<br/>Сегодня вы познакомитесь с конструктором чат-ботов Botmother, узнаете о его устройстве и принципе работы</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8187-9cb2-d903f63fe2ee" class="bulleted-list"><li style="list-style-type:disc">A03 — Знакомство с Tilda<br/>Познакомитесь с конструктором сайтов Tilda. Узнаете, для каких задач подходит Tilda, сколько стоит использование конструктора. Познакомитесь с интерфейсом и основным функционалом</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-817b-8bab-eab03e9c5057" class="bulleted-list"><li style="list-style-type:disc">A04 — Знакомство с Glide <br/>Сегодня вы познакомитесь с новым инструментом Glide, разберем для решения каких задач он подходит, и попробуем собрать простое но полезное  для агента приложение</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81b2-a103-fe2c34a2a63b" class="bulleted-list"><li style="list-style-type:disc">A05 —  Знакомство с Adalo<br/>Зарегистрируетесь в Adalo, разберетесь в его интерфейсе и логике работы приложения</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81bc-9ee2-ffed32dcf5d8" class="bulleted-list"><li style="list-style-type:disc">A06 —  Сервис в Bubble<br/>Сегодня вы сможете вникнуть в работу сервиса и поймете все его фишки, а также познакомитесь с его сферой использования</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81c8-a613-c03bef93fbe3" class="bulleted-list"><li style="list-style-type:disc">A07 — Directual<br/>Сегодня вы сможете разобраться в работе сервиса, узнаете о его особенностях и сфере использования</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8195-8094-c5d6188f49f7" class="bulleted-list"><li style="list-style-type:disc">A08 — Воркшоп по итогам первого спринта<br/>Научитесь определять, какой инструмент наиболее эффективен для конкретной задачи</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-817c-9c53-f4706e38ae36" class="bulleted-list"><li style="list-style-type:disc">ZR01 — Зерокодеры и их сообщества<br/>Сегодня начинается новый спринт. Вооружившись знаниями о самых популярных и используемых инструментах, приступим к изучению мира зерокодеров. Узнаем, как и где с ними общаться, как считать смету, лидировать проект, ставить задачи, следить за соблюдением сроков.</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-817e-ba1d-e30ef4879f79" class="bulleted-list"><li style="list-style-type:disc">ZR02 — Оценка возможностей кандидата. Создание тестового задания<br/>Второй урок спринта “Зерокодер” посвящен тому, как определить, что исполнитель действительно так хорош, как говорит</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81f0-a959-d2b3f942bbcc" class="bulleted-list"><li style="list-style-type:disc">ZR03 — Как описывать задачи понятно и эффективно? Гант для зерокодера<br/>Научимся разбивать большой проект на части, оформлять задачи и выстраивать Гант для структуризации и отслеживания выполнения задач</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-814a-94e3-d954bced7892" class="bulleted-list"><li style="list-style-type:disc">ZR04 — Таск-трекеры и правила one-on-one встреч <br/>Познакомимся с самыми популярными таск-трекерами. Научимся оформлять проекты и задачи. Узнаем, как проводить встречи с заказчиками и исполнителями</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81f9-adad-d345754da07a" class="bulleted-list"><li style="list-style-type:disc">ZR05 — Мессенджеры, правила письменной коммуникации и фоллоу-апы<br/>Узнаете, в каких мессенджерах лучше вести деловую коммуникацию, как писать фоллоу-апы и чего не стоит делать в деловой коммуникации</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81ef-a904-cfe885d30c86" class="bulleted-list"><li style="list-style-type:disc">ZR06 — Воркшоп: Грамотная постановка задач<br/>Попрактикуетесь в разбивании проекта на задачи и оформлении задач (Notion)</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-810f-bf14-ce274f0003c3" class="bulleted-list"><li style="list-style-type:disc">Спиддейт с зерокодером</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81ef-8fbb-f533706313b8" class="bulleted-list"><li style="list-style-type:disc">Z01 — Русскоязычные/англоязычные биржи заказов<br/>Узнаете, где искать заказчиков и проекты, какие бывают биржи и где еще можно обнаружить заказы</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8184-804e-e699afc540af" class="bulleted-list"><li style="list-style-type:disc">Z02 — Основы коммуникации с заказчиком<br/>Научитесь вести коммуникацию с заказчиком от первого касания до завершения проекта. Узнаете, как продать no-code тому, кто не знает, что он ему подойдет</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81aa-afa8-d17d61ac5f2a" class="bulleted-list"><li style="list-style-type:disc">Z03 — Оценка и осмечивание проекта <br/>Научитесь правильно рассчитывать стоимость работ по проекту и составлять смету для заказчика</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-815e-ae22-d6a5b6eb772b" class="bulleted-list"><li style="list-style-type:disc">Z04 — Составление технического задания и договора для заказчика<br/>Научитесь составлять техническое задание для заказчика, узнаете, какие документы необходимы для успешного ведения и завершения проекта</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81e5-bc19-d0af1aa8ea8a" class="bulleted-list"><li style="list-style-type:disc">Z05 — Трекинг ведения продукта и сбор обратной связи<br/>Узнаете, как и зачем собирать обратную связь в процессе ведения проекта. Какими способами и с помощью каких инструментов можно вести трекинг разработки продукта</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8172-9ae7-e2ae4b74a80e" class="bulleted-list"><li style="list-style-type:disc">Z06 — Правки в ТЗ по дороге<br/>Детально изучим понятие правок в проект. Разберемся, какие есть варианты и как лучше о них договариваться с заказчиком, чтобы никто не работал себе в убыток и сохранил отличную репутацию после окончания работы</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81f5-8234-cc54ef4278da" class="bulleted-list"><li style="list-style-type:disc">Z07 — Воркшоп: спиддейтинг с заказчиком</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-814a-874f-e014de130787" class="bulleted-list"><li style="list-style-type:disc">AGU01 — Личный бренд: как себя продвигать<br/>Сегодня вы узнаете, что такое личный бренд, зачем он нужен, и в каких случаях стоит побеспокоиться о его создании</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81ed-8243-e718407b7090" class="bulleted-list"><li style="list-style-type:disc">AGU02 — Unit-экономика и построение воронок заказов<br/>Узнаете, что такое Unit-экономика, как ее использовать в продукте. Сделаете выводы, в каком случае, вы сможете ее использовать в своей работе</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81ee-ba78-d2ce1f4c8a51" class="bulleted-list"><li style="list-style-type:disc">AGU03 — Менеджмент нескольких проектов одновременно<br/>Поймете, как экспортировать принципы ведения одного проекта на ведение нескольких проектов одновременно.</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81a0-9bc5-cd784a25c131" class="bulleted-list"><li style="list-style-type:disc">AGU04 — Роли в команде и как подбирать людей<br/>Узнаете, какие бывают роли в команде, кто необходим на старте, а кто нужен для большой команды. А также узнаете, какие бывают подходы к определению ролей</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81f6-94f1-e436172ec7b9" class="bulleted-list"><li style="list-style-type:disc">AGU05 — Налоги<br/>Более подробно узнаете о режимах самозанятости и ИП, познакомитесь с формой оформления “Общество с ограниченной ответственностью”</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-816c-bff2-cb4554f4e2cd" class="bulleted-list"><li style="list-style-type:disc">AGU06 — Оформление себя (ИП, самозанятость)<br/>Узнаете, какие есть варианты оформления деятельности, и какой подойдет вам больше всего</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8155-9408-ec292f6e072d" class="bulleted-list"><li style="list-style-type:disc">AGU07 — Итоговый проект <br/>Пропишете бизнес-план, продумаете устройство команды, коммуникационные процессы, используя полученную в курсе информацию</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-811a-bdab-c33b6bca9c7d" class="bulleted-list"><li style="list-style-type:disc">AGU08 — Финальный воркшоп<br/>Это возможность пропитчить свой проект и получить обратную связь</li></ul></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8126-901f-f86578599730" class="toggle"><li><details open=""><summary>Мобилка курс Глайд 1.0 Адало 2.0 (не актуально, архив) </summary><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81ac-8eac-c47291565dc7" class="bulleted-list"><li style="list-style-type:disc">W01 Урок onboarding <br/>Поймете, как и где будет проходить обучение</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8138-a281-fec3423f06ff" class="bulleted-list"><li style="list-style-type:disc">U01 Мобильные приложения. Из чего они состоят?<br/>Узнаете, из чего состоят мобильные приложения, какие есть компоненты. Разберетесь в том, чем отличается кнопка от экшена, а Toolbar от Tab bar</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8131-a27e-ebde60ce264e" class="bulleted-list"><li style="list-style-type:disc">U02 Whimsical. Знакомство и интерфейс<br/>Зарегистрируетесь в Whimsical. Изучите интерфейс сервиса</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-814a-a746-d1becbeb601c" class="bulleted-list"><li style="list-style-type:disc">U03 User Flow. Пользовательские сценарии<br/>Узнаете, что такое User Flow. Создадите свою первую схему пользовательского сценария</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8164-b149-fdb0d15256a4" class="bulleted-list"><li style="list-style-type:disc">U04 Вайрфреймы и их назначение<br/>Узнаете, что такое вайрфреймы и зачем они нужны. Создадите вайрфреймы к пользовательскому сценарию “Создание заказа + Привязка исполнителя”</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-810d-ba82-ff84b59707e9" class="bulleted-list"><li style="list-style-type:disc">U05 Визуальный стиль<br/>Ознакомитесь с различными визуальными стилями и узнаете, что такое мудборд</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81ea-9d6c-cf1dba0df0af" class="bulleted-list"><li style="list-style-type:disc">U06 Шрифты и цвета<br/>Узнаете, как работать со шрифтами и цветом</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8135-b691-fcc81068c1f1" class="bulleted-list"><li style="list-style-type:disc">U07 Знакомство с Figma<br/>Освоите интерфейс и базовые инструменты Figma</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8135-86aa-f732668361aa" class="bulleted-list"><li style="list-style-type:disc">U08 Дизайн-концепт приложения (часть 1)<br/>Узнаете о сервисах по поиску иконок и картинок. Подготовите необходимые составляющие для дизайн-концепта</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81b9-b2e0-cb1ab9ee5990" class="bulleted-list"><li style="list-style-type:disc">U09 Дизайн-концепт приложения (часть 2) <br/>Доделаете дизайн-концепт  нашего первого мобильного приложения </li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8189-90a2-c577fd6aaa2b" class="bulleted-list"><li style="list-style-type:disc">U10 Дизайн-концепт приложения. Персональные приложения <br/>Разберетесь с тем, что такое персональное приложение, и создадите его дизайн-концепт</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81a4-9242-c87c1376a7d8" class="bulleted-list"><li style="list-style-type:disc">U11 Дизайн-проект приложения. Корпоративные приложения<strong><br/></strong>Создадите дизайн-концепт корпоративного приложения</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8144-92dc-fdb590d43a0a" class="bulleted-list"><li style="list-style-type:disc">U12 Дизайн-проект приложения. Онлайн-обучение<br/>Создадите дизайн-концепт приложения для онлайн-обучения</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8117-8951-dee99fa66586" class="bulleted-list"><li style="list-style-type:disc">U13 Дизайн-проект приложения. Соцсети<br/>Создадите дизайн-концепт социальной сети</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-816c-a618-f51e0be8cb62" class="bulleted-list"><li style="list-style-type:disc">U14 Дизайн-проект приложения. E-commerce приложение<br/>Создадите дизайн-концепт e-commerce приложения</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-810b-a6b6-dfe836ae18a8" class="bulleted-list"><li style="list-style-type:disc">U15 Управление проектом в Whimsical<br/>Разберете методы и способы управления проектом в Whimsical</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8152-8ebb-dcd0f760beee" class="bulleted-list"><li style="list-style-type:disc">G01 Ваше первое приложение<br/>Узнаете о возможностях Glide и создадим свой первый экран приложения, а также базу данных для него</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8176-b0fe-d5f7f1d86e1a" class="bulleted-list"><li style="list-style-type:disc">G02 Знакомство с интерфейсом<br/>Научитесь делать первичную настройку приложения, оформлять экран входа и делать экраны с несколькими компонентами</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8192-bbb3-eb7e78525b1d" class="bulleted-list"><li style="list-style-type:disc">G03 Создаем категории в приложении<br/>Узнаете, как выглядит интерфейс Glide-Tables и начнете в нем работать. Выясните, как устроены и зачем нужны связи между таблицами. Создадите категории в приложении</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81cd-b4ba-ebf5f77673ed" class="bulleted-list"><li style="list-style-type:disc">G04 Работа с базой данных<br/>Поймете, как сделать такую базу данных, которую поймёт любая машина. Сделаете сложную логику внутри базы данных и научитесь пользоваться новым типом колонок</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-813d-89f9-da2c86cb97b2" class="bulleted-list"><li style="list-style-type:disc">G05 Создаем базу пользователей<br/>Вы создадите базу пользователей и внедрите первый простой функционал. Отображение экранов пользователей и избранного</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81f5-9603-f279e54ea458" class="bulleted-list"><li style="list-style-type:disc">G06 Добавление контента пользователями<br/>Вы научитесь давать права пользователям создавать, редактировать и удалять контент непосредственно в приложении, а также настраивать видимость элементов для разных типов пользователей</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-814e-979d-e692783a51f8" class="bulleted-list"><li style="list-style-type:disc">G07 Сложные actions<br/>Научитесь пользоваться сложными actions в Glide. Создадите новую базу данных для записи информации об оплате</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-815f-aca6-e0ea92da1ced" class="bulleted-list"><li style="list-style-type:disc">G08 Сложные условия<br/>Вы сможете настраивать сложные условия внутри приложения, а также узнаете о необычном способе использования эмодзи в Glide</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8117-90ac-d45ff0668e7a" class="bulleted-list"><li style="list-style-type:disc">G09 Настройка фильтрации<br/>Вы научитесь самостоятельно настраивать фильтрацию в приложении и поймете, насколько это незаменимый инструмент в мобильной разработке</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8135-a65f-fe54050c623e" class="bulleted-list"><li style="list-style-type:disc">G10 Добавим математики<br/>Займемся математикой. Выведете на главный экран список текущих курсов, который проходит зарегистрированный в данный момент пользователь. И вынесете на карточку прогресс</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81eb-8ccd-dcba1cf76125" class="bulleted-list"><li style="list-style-type:disc">G11 Статистика<br/>Вы научитесь отображать статистику внутри вашего приложения с помощью новых компонентов экрана <code>Details view</code> и колонок в базе данных</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8105-902a-c5120667fa35" class="bulleted-list"><li style="list-style-type:disc">G12 Подключаем оплату<br/>Поговорим о внешних интеграциях в приложении на Глайде. Прикрутим функцию оплаты</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81db-b156-cb57cca25fd0" class="bulleted-list"><li style="list-style-type:disc">G13 Загрузка итогового проекта. <br/>Весь модуль вы разрабатывали проект в Glide и теперь готовы его полностью представить на проверку.</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-810a-a16a-cae4b6c50ba2" class="bulleted-list"><li style="list-style-type:disc">А01 — Знакомство и регистрация<br/>Зарегистрируетесь в Adalo и познакомимся с панелями инструментов</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8145-9c3e-ce5fc4e4b8e4" class="bulleted-list"><li style="list-style-type:disc">А02 — Базы данных<br/>Создадите первые базы данных приложения</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-817f-887a-db1c08f37115" class="bulleted-list"><li style="list-style-type:disc">А03 — Создаём экраны онбординга и ленту предложений<br/>Создадите в Adalo экраны онбординга и ленту предложений</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8194-8581-c52a05900f0c" class="bulleted-list"><li style="list-style-type:disc">А04 — Настраиваем кнопки действий и создаём экран объекта<br/>Настроите кнопки действий и создадите экран объекта</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8127-ae7e-c41bc9003209" class="bulleted-list"><li style="list-style-type:disc">А05 — Создаём экраны фотогалереи и отзывов, настраиваем функцию бронирования, собираем экраны регистрации и авторизации<br/>Соберёте экраны галереи фото и отзывов, настроите функцию бронирования и создадите экраны регистрации и авторизации</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8180-98ba-e9fa5f770ee1" class="bulleted-list"><li style="list-style-type:disc">А06 — Создаём нижнее меню и собираем экраны профиля<br/>Создадите нижнее меню и соберёте экраны профиля</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8112-9307-c73796fbbe63" class="bulleted-list"><li style="list-style-type:disc">А07 — Собираем экраны истории бронирования<br/>Соберёте и настроите экран истории бронирования</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8144-b99e-c1141f0ed8e5" class="bulleted-list"><li style="list-style-type:disc">А08 — Настраиваем функции Отмена брони, Оставить отзыв и Поставить оценку объекту<br/>Реализуете для пользователя возможность отменить бронь, оставить отзыв и поставить оценку объекту</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81f0-a280-fcaca82e7c63" class="bulleted-list"><li style="list-style-type:disc">А09 — Создаём кабинет арендодателя и настраиваем функцию добавления объекта<br/>Настроите опцию добавления объекта и соберёте экраны кабинета арендодателя</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8187-83fa-e2cb48a3c1fa" class="bulleted-list"><li style="list-style-type:disc">А10 — Создаём админку, собираем экраны объектов, поиска и пользователей<br/>Соберёте экран избранного в мобильном приложении, создадите администраторскую панель и настроите в ней экраны объектов, поиска и пользователей</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81d6-92e6-f9969e875582" class="bulleted-list"><li style="list-style-type:disc">А11 — Собираем и настраиваем экраны модерации и поддержки в админке<br/>Соберёте в админке экраны редактирования пользователя и объекта, создадите экраны поддержки и реализуете опции работы с жалобами и вопросами пользователей</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81c0-b3c9-e5e1d98bf1a2" class="bulleted-list"><li style="list-style-type:disc">А12 — Настраиваем push-оповещения, отправку жалоб и сообщений, удаление старых записей из базы по API<br/>Настроите push-оповещения, реализуете для пользователя возможность отправлять жалобы и сообщения в чат-поддержки, настроите удаление старых сообщений из базы с помощью Make (ранее Integromat)</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81ea-90b1-c5f4bf794216" class="bulleted-list"><li style="list-style-type:disc">А13 — Настраиваем по API переход брони в завершённую, запланированные push-уведомления, опцию Восстановление пароля<br/>По API реализуете переход запланированной брони в завершённую, настроите запланированные push-оповещения, опцию восстановление пароля</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8140-93e0-f58e9a56d166" class="bulleted-list"><li style="list-style-type:disc">А14 — Разбираем сервисы для смс-рассылок, настраиваем приём платежей через ЮKassa. Создаём корзину<br/>Узнаете о сервисах смс-рассылки, настроите оплату через сервис ЮKassa</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8176-94d0-d622ff26ccb9" class="bulleted-list"><li style="list-style-type:disc">А15 — Регистрируем аккаунт разработчика и публикуем приложения в сторах<br/>Узнаете, как регистрировать аккаунт разработчика и публиковать приложение в сторы</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8114-9ffa-e2b45af800eb" class="bulleted-list"><li style="list-style-type:disc">А16 — Бонусный урок. Лайфхаки по взаимодействию с заказчиками. Инструменты для оптимизации работы над проектами<br/>Узнаете, как грамотно взаимодействовать с заказчиками и какие инструменты можно использовать, чтобы оптимизировать работу над проектами</li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-814a-b4ee-edb28b20d3f1" class="bulleted-list"><li style="list-style-type:disc">ВЫПУСКНОЙ ПРОЕКТ</li></ul></div></details></li></ul></div></div></figure></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81fa-9f5f-e6c19b64b194" class="">
+</p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81de-a701-fbb846f752cb" class="">
+</p></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81d1-804b-e65bf557f533" class="toggle"><li><details open=""><summary><strong>Инфо о QA сессии</strong></summary><div style="display:contents" dir="auto"><blockquote id="13d7cde5-de79-81fb-9c5d-d46861c4250b" class=""><mark class="highlight-red_background">Не забывайте уведомлять студентов о QA сессии в чате.  Пример ниже адаптируйте под QA своего потока.<br/>Под примером расписание с QA сессиями</mark></blockquote></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-8193-b51c-c8e70b3b58ab" class="">Всех приветствую!</p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81d9-a650-c0488b767f80" class="">Напоминаю, что сегодня состоится  QA сессия по модулю UX/UI c преподавателем Валерия в 16:00 по мск</p></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-8149-b894-e5749d25216b" class="">Не забудьте подготовить ваши вопросы по ДЗ, пишите их прямо под уроком с QA сессией. Преподаватель обязательно на них ответит ✔️</p></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="13d7cde5-de79-81c9-89b3-fdea32f49b51"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Смотрим расписание QA сессии своего потока здесь - <a href="https://docs.google.com/spreadsheets/d/1eMZLiKMuqmUJ0MzqUkXXP0avjjVCTkDinx5HI4Yl3c4/edit?pli=1#gid=1518113835">https://docs.google.com/spreadsheets/d/1eMZLiKMuqmUJ0MzqUkXXP0avjjVCTkDinx5HI4Yl3c4/edit?pli=1#gid=1518113835</a></div></figure></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-81df-926a-cecd18ae1530" class="toggle"><li><details open=""><summary><strong>Завершение потока</strong></summary><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="13d7cde5-de79-815a-8e3e-f51613344856"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Приветствую вас уважаемые Зерокодеры!<br/>Подошла к завершению кураторская поддержка вашего пути на курсе<br/><br/>Что мы с вами успели сделать?<br/>🔥 Изучили хардовые инструменты курса<br/>🔥 Выполнили выпускной проект<br/>🔥 Получили сертификаты о прохождении курса (если удалось выполнить все условия получения сертификата)<br/><br/>У вас остается доступ к платформе курса в соответствии с тарифом<br/>Бизнес тариф 6 месяцев со старта курса<br/>Вип тариф 9 месяцев со старта курса<br/><br/>Что делать дальше?<br/>1. Пройти Бизнес модуль курса 👍<br/>2. Подписаться на канал Песочница Зерокодера - https://t.me/+ZcOFwacMlm1iZGRi<br/>3. Вступить в чат &quot;Песочница&quot; - https://t.me/+j9uTAl9TXhxjYzNi<br/>4. Стать участником Маркетплейса о котором подробно рассказано в Бизнес модуле<br/>⬆️ Пройдя Бизнес модуль и подписавшись на канал &quot;Песочница Зерокодеров&quot;, вы узнаете все о дальнейшей реализации себя как Зерокодера:<br/>- Как получить свой первый заказ<br/>- Кто такой наставник и как он поможет в реализации первого заказа<br/>- Условия работы с наставником<br/>- Продающее портфолио<br/>- Как оформить самозанятость или ИП<br/>- Путь взаимодействия с заказчиком от обсуждения до завершения проекта<br/><br/>Желаю каждому из вас успехов, оставайтесь в поле Зерокодинга, будьте в курсе новостей, а также в активном нетворкинге с Зерокодерами!<br/><br/>Передаю вам полезнейшие ссылки Зерокодера:<br/>▪️сайт Университета Зерокодер с полным перечнем инструментов - https://zerocoder.ru/<br/>▪️канал Запили мне Зерокодер - https://t.me/zerocode_jobs (Заказы для Зерокодера)<br/>▪️канал Университета - https://t.me/oqode<br/>▪️крупнейшее сообщество Зерокодеров - https://t.me/zerocoders<br/>▪️Комьюнити Adalo - https://t.me/adalo_ru<br/>▪️Комьюнити Glide - https://t.me/glideapps_russia<br/>▪️Комьюнити Bubble - <a href="https://t.me/+WQul1oJoROFPxCLb">https://t.me/+WQul1oJoROFPxCLb</a><br/>▪️Комьюнити Webflow - <a href="https://t.me/+WNVCu0P8guKFJwhZ">https://t.me/+WNVCu0P8guKFJwhZ</a><br/>▪️Комьюнити GPT - <a href="https://t.me/chat_GPT_zerocoder">https://t.me/chat_GPT_zerocoder</a><br/>▪️Комьюнити FlutterFlow - <a href="https://t.me/flutterflow_chat">https://t.me/flutterflow_chat</a></div></figure></div></details></li></ul></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="13d7cde5-de79-8135-8437-d44a03751f59" class="toggle"><li><details open=""><summary><strong>5. Работай ежедневно над доходимостью своих потоков и получи за это премию! </strong></summary><div style="display:contents" dir="auto"><blockquote id="13d7cde5-de79-814b-ae66-e78e9daad71b" class=""><mark class="highlight-red_background">Для нагладного примера собрана карта идеально пути студента. Куратору важно понимать в какой момент необходимо проводить работу со студентом, чтобы вернуть его к обучению и поднять мотивацию.<br/>Под картой пути студента - таблица доходимости потоков в которой можно увидеть на каком этапе затормозил студент </mark></blockquote></div><div style="display:contents" dir="ltr"><figure id="13d7cde5-de79-8132-94ee-ec88919e7655"><div class="source"><a href="https://miro.com/app/board/uXjVPdTTkB8=/?share_link_id=166762808418">https://miro.com/app/board/uXjVPdTTkB8=/?share_link_id=166762808418</a></div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="13d7cde5-de79-813a-bac1-d2d8fa3a7eb3"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Статистика доходимости студентов - <a href="https://docs.google.com/spreadsheets/u/1/d/1vllyJA2EKve-LZKlEL-VtqAmDjm4e0g2DkzrQkYQHAs/edit#gid=360374731">https://docs.google.com/spreadsheets/u/1/d/1vllyJA2EKve-LZKlEL-VtqAmDjm4e0g2DkzrQkYQHAs/edit#gid=360374731</a></div></figure></div></details></li></ul></div></details></li></ul></div></div></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><mark class="highlight-blue">ТВОИ ИНСТРУМЕНТЫ</mark> </summary><div class="indented"><div style="display:contents" dir="auto"><p id="6c6428e4-e716-43de-a0d7-18034e24ee38" class="">
+</p></div></div></details></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><mark class="highlight-blue">ТВОЯ МОТИВАЦИЯ</mark></summary><div class="indented"><div style="display:contents" dir="auto"><p id="1bb7cde5-de79-80a3-8279-e5976de76bef" class=""><a href="https://www.notion.so/2025-1a47cde5de7980029db0e69d417f12fa?pvs=21"><span class="icon">🎰</span>Мотивация куратора с фераль 2025</a> </p></div></div></details></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><mark class="highlight-blue">ПЛАН ОНБОРДИНГА</mark></summary><div class="indented"><div style="display:contents" dir="auto"><p id="794b6c41-28cb-41c2-bc5e-7ea285101a31" class="">
+</p></div><div style="display:contents" dir="auto"><ol type="1" id="4d9d8003-fa01-430d-b173-f4af4b7d792b" class="numbered-list" start="1"><li>Выполни все задачи онбординга Куратора</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="f5eab357-5c43-43f8-838e-2807c6227e8b" class="numbered-list" start="2"><li>Ниже представлен календарный план запусков и онлайн встреч с командой и Лидом, занеси их в личный календарь чтобы не упустить</li></ol></div><div style="display:contents" dir="ltr"><div id="13d7cde5-de79-819b-97a4-f3ccd4e9212d" class="collection-content"><h4 class="collection-title">ПЛАН КУРАТОРСТВА</h4><div class="collection-content-wrapper"><table class="collection-content"><colgroup><col style="width:100%"/></colgroup><thead><tr><th><span class="icon property-icon"><img src="https://www.notion.so/icons/font_gray.svg" style="width:14px;height:14px;display:block"/></span>Name</th></tr></thead><tbody><tr id="8a5d6c4e-32fc-4d2b-b8e3-e3de6d5d693c"><td class="cell-title"><a href="https://www.notion.so/8a5d6c4e32fc4d2bb8e3e3de6d5d693c?pvs=21">Untitled</a></td></tr></tbody></table></div><br/><br/></div></div></div></details></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><mark class="highlight-blue">ЗАДАЧИ ОНБОРДИНГА</mark></summary><div class="indented"><div style="display:contents" dir="ltr"><div id="13d7cde5-de79-81ff-ab39-fd8bc1804640" class="collection-content"><h4 class="collection-title">Борда куратора</h4><div class="collection-content-wrapper"><table class="collection-content"><colgroup><col style="width:31.818181818181817%"/><col style="width:22.727272727272727%"/><col style="width:22.727272727272727%"/><col style="width:22.72727272727272%"/></colgroup><thead><tr><th><span class="icon property-icon"><img src="https://www.notion.so/icons/font_gray.svg" style="width:14px;height:14px;display:block"/></span>Название</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/friends_gray.svg" style="width:14px;height:14px;display:block"/></span>Ответсвенный</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/calendar_gray.svg" style="width:14px;height:14px;display:block"/></span>Дедлайн</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/description_gray.svg" style="width:14px;height:14px;display:block"/></span>Описание</th></tr></thead><tbody><tr id="13d7cde5-de79-812f-a912-d8fd6d2a63e5"><td class="cell-title"><a href="https://www.notion.so/13d7cde5de79812fa912d8fd6d2a63e5?pvs=21">График запусков потоков</a></td><td class="cell-^ZoD"></td><td class="cell-Di~}"></td><td class="cell-WAAt"><a href="https://docs.google.com/spreadsheets/d/1JaQwcIcrZ35lm1PLusN0543k7J3JbtpXd9Glc0-c3qs/edit#gid=403112143">https://docs.google.com/spreadsheets/d/1JaQwcIcrZ35lm1PLusN0543k7J3JbtpXd9Glc0-c3qs/edit#gid=403112143</a></td></tr><tr id="13d7cde5-de79-81d5-9ab6-c38e8f17e41d"><td class="cell-title"><a href="https://www.notion.so/13d7cde5de7981d59ab6c38e8f17e41d?pvs=21">Расписание выхода уроков </a></td><td class="cell-^ZoD"></td><td class="cell-Di~}"></td><td class="cell-WAAt"><a href="https://docs.google.com/spreadsheets/d/1eMZLiKMuqmUJ0MzqUkXXP0avjjVCTkDinx5HI4Yl3c4/edit?pli=1#gid=1025109244">https://docs.google.com/spreadsheets/d/1eMZLiKMuqmUJ0MzqUkXXP0avjjVCTkDinx5HI4Yl3c4/edit?pli=1#gid=1025109244</a></td></tr><tr id="13d7cde5-de79-8186-836b-d782953e7d8e"><td class="cell-title"><a href="https://www.notion.so/KPI-13d7cde5de798186836bd782953e7d8e?pvs=21">Учет KPI Куратора  (Таблица КЛН)</a></td><td class="cell-^ZoD"></td><td class="cell-Di~}"></td><td class="cell-WAAt"><a href="https://docs.google.com/spreadsheets/d/1pYlMzqSg15BzOS9r_TsDcJhBcJnKf5sIV75j5ZJEJcI/edit#gid=1709744959">https://docs.google.com/spreadsheets/d/1pYlMzqSg15BzOS9r_TsDcJhBcJnKf5sIV75j5ZJEJcI/edit#gid=1709744959</a></td></tr><tr id="13d7cde5-de79-81c4-a147-c1746620c87a"><td class="cell-title"><a href="https://www.notion.so/Notion-13d7cde5de7981c4a147c1746620c87a?pvs=21">Информация о курсах в Notion </a></td><td class="cell-^ZoD"></td><td class="cell-Di~}"></td><td class="cell-WAAt"><a href="https://www.notion.so/3a9f30869265428191c967973241439b?pvs=21">https://www.notion.so/zerocoder/Educational-3a9f30869265428191c967973241439b</a></td></tr><tr id="13d7cde5-de79-81d2-93de-c46334d0297c"><td class="cell-title"><a href="https://www.notion.so/13-30-13d7cde5de7981d293dec46334d0297c?pvs=21">Каждый четверг в 13:30 по мск Кураторская встреча </a></td><td class="cell-^ZoD"></td><td class="cell-Di~}"></td><td class="cell-WAAt">Войти Zoom Конференция<br/><a href="https://us02web.zoom.us/j/82063161504?pwd=gxoTmPeDmWR1K0NJB5YJ0L2c82xdc8.1">https://us02web.zoom.us/j/82063161504?pwd=gxoTmPeDmWR1K0NJB5YJ0L2c82xdc8.1</a></td></tr><tr id="13d7cde5-de79-812b-adee-e68f6dd255f2"><td class="cell-title"><a href="https://www.notion.so/start-13d7cde5de79812badeee68f6dd255f2?pvs=21">/start бота Помощник Зерокота </a></td><td class="cell-^ZoD"></td><td class="cell-Di~}"></td><td class="cell-WAAt">@zerocat_helper_bot</td></tr><tr id="13d7cde5-de79-8199-a3a4-df6542b563f2"><td class="cell-title"><a href="https://www.notion.so/13d7cde5de798199a3a4df6542b563f2?pvs=21">Добавься в чат</a></td><td class="cell-^ZoD"></td><td class="cell-Di~}"></td><td class="cell-WAAt"> ЧАТ НАПОМИНАЛКА - <a href="https://t.me/+MPcW1shHSfBlYTBi">https://t.me/+MPcW1shHSfBlYTBi</a><br/>В этом чате тебе будут выходить уведомления о QA-сессиях/Воркшопах в втоих потоках </td></tr><tr id="13d7cde5-de79-8162-9e6d-ed9c1ccd332e"><td class="cell-title"><a href="https://www.notion.so/13d7cde5de7981629e6ded9c1ccd332e?pvs=21">Добавься в чат </a></td><td class="cell-^ZoD"></td><td class="cell-Di~}"></td><td class="cell-WAAt">Zeroкураторы2.0 - <a href="https://t.me/+NSguvVyGhD5kODli">https://t.me/+NSguvVyGhD5kODli</a> <br/>Это чат твоей команды кураторов. Обращайся к коллегам с вопросами, обязательно делись результатами и не забудь пожаловаться на студентов))</td></tr><tr id="13d7cde5-de79-8105-9fc6-fb35302d9f9c"><td class="cell-title"><a href="https://www.notion.so/13d7cde5de7981059fc6fb35302d9f9c?pvs=21">Добавься в чат </a></td><td class="cell-^ZoD"></td><td class="cell-Di~}"></td><td class="cell-WAAt">Zero Кураторы  - <a href="https://t.me/+kLslCpZqzUxlYzNi">https://t.me/+kLslCpZqzUxlYzNi</a> <br/>Это чат по взаимодействию с VIP отделом Университета! В чате заседают прекрасные Дамы VIP Менеджеры, которые неустанно работают с VIP студентами  и приносят вопросики для кураторов</td></tr><tr id="e3605e41-6067-4b18-a6b3-c2c82a49ae65"><td class="cell-title"><a href="https://www.notion.so/e3605e4160674b18a6b3c2c82a49ae65?pvs=21">Добавься в чат </a></td><td class="cell-^ZoD"></td><td class="cell-Di~}"></td><td class="cell-WAAt">ОП+Кураторы - <a href="https://t.me/+hOMjtE0U3LxkN2Ri">https://t.me/+hOMjtE0U3LxkN2Ri</a><br/>В чате присутствуют Лиды Отдела продаж, смело приноси им пожелания от студентов о Заморозке/ Продлении доступа к курсу о желании приобрести курс или получить консультацию по линейке программ Университета</td></tr><tr id="19fa36be-917e-48dc-be12-828e513ee742"><td class="cell-title"><a href="https://www.notion.so/19fa36be917e48dcbe12828e513ee742?pvs=21">Добавься в чат </a></td><td class="cell-^ZoD"></td><td class="cell-Di~}"></td><td class="cell-WAAt">Техническая поддержка Университета - <a href="https://t.me/+E9UpNbJYW2o0MzUy">https://t.me/+E9UpNbJYW2o0MzUy</a><br/>В чате присутствуют наши неземные технофеи, которые настраивают все процессы в Университете. С сегодняшнего дня это твои верные помощницы по решению проблем студентов, а также твоих личных техничсеких проблем)<br/>Береги их </td></tr><tr id="13d7cde5-de79-81f0-a9c8-e6a691751a3d"><td class="cell-title"><a href="https://www.notion.so/GETCOURSE-13d7cde5de7981f0a9c8e6a691751a3d?pvs=21">Проверь доступы на GETCOURSE </a></td><td class="cell-^ZoD"></td><td class="cell-Di~}"></td><td class="cell-WAAt">У тебя должны быть открыты следующие тренинги:<br/>1.<br/>2.<br/>3.</td></tr></tbody></table></div><br/><br/></div></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="13d7cde5-de79-8167-9bf4-f2b4b1887cd8"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="13d7cde5-de79-81af-bffb-edbec1afab96" class="">Задачи в статусе “Входящие” - требуют переноса в статус “Выполнено” после выполенния)<br/>Задачи в статусе “В работе” - это постоянные ссылки на рабочие доки</p></div></div></figure></div></div></details></div><div style="display:contents" dir="auto"><p id="13d7cde5-de79-8185-821d-d66068b8c951" class="">
+</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

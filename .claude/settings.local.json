@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C \"/Users/kseniiasablina/aksiniazero/results-curators\" init)",
+      "Bash(git -C \"/Users/kseniiasablina/aksiniazero/results-curators\" status)"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "context7",
+    "googlesheets"
+  ]
+}

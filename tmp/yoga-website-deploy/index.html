@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>body&amp;mind — хатха йога</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0b0908;
+      --bg-warm:  #111009;
+      --cream:    #e6ddd1;
+      --cream-dim:#b8afa4;
+      --muted:    #6a6358;
+      --accent:   #b69870;
+      --line:     rgba(182,152,112,.18);
+      --ff-serif: 'Cormorant Garamond', Georgia, serif;
+      --ff-sans:  'Jost', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--ff-sans);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 52px;
+      mix-blend-mode: normal;
+    }
+
+    nav::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(11,9,8,.72) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .nav-logo {
+      font-family: var(--ff-serif);
+      font-size: 1.25rem;
+      font-weight: 400;
+      letter-spacing: .04em;
+      color: var(--cream);
+      text-decoration: none;
+      position: relative;
+    }
+
+    .nav-logo em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+      position: relative;
+    }
+
+    .nav-links a {
+      font-size: .72rem;
+      font-weight: 300;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      text-decoration: none;
+      transition: color .3s;
+    }
+
+    .nav-links a:hover { color: var(--cream); }
+
+    /* ── HERO ────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 100svh;
+      min-height: 640px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 52px 64px;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      filter: brightness(.55) saturate(.7);
+      transform: scale(1.04);
+      animation: heroScale 12s ease-out forwards;
+    }
+
+    @keyframes heroScale {
+      from { transform: scale(1.04); }
+      to   { transform: scale(1.00); }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top,  rgba(11,9,8,.88) 0%, rgba(11,9,8,.28) 55%, transparent 100%),
+        linear-gradient(to right, rgba(11,9,8,.3) 0%, transparent 60%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+    }
+
+    .hero-eyebrow {
+      font-size: .68rem;
+      font-weight: 300;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp .8s ease forwards .4s;
+    }
+
+    .hero-title {
+      font-family: var(--ff-serif);
+      font-size: clamp(3.8rem, 9vw, 8.4rem);
+      font-weight: 300;
+      line-height: .92;
+      letter-spacing: -.01em;
+      color: var(--cream);
+      opacity: 0;
+      animation: fadeUp .9s ease forwards .6s;
+    }
+
+    .hero-title .amp {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-title .part2 {
+      display: block;
+      padding-left: clamp(48px, 8vw, 120px);
+    }
+
+    .hero-sub {
+      margin-top: 28px;
+      max-width: 420px;
+      font-size: .85rem;
+      font-weight: 200;
+      line-height: 1.7;
+      color: var(--cream-dim);
+      opacity: 0;
+      animation: fadeUp .9s ease forwards .85s;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 40px;
+      font-size: .72rem;
+      font-weight: 400;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-decoration: none;
+      opacity: 0;
+      animation: fadeUp .9s ease forwards 1.1s;
+    }
+
+    .hero-cta::after {
+      content: '';
+      display: block;
+      width: 44px;
+      height: 1px;
+      background: var(--accent);
+      transition: width .4s ease;
+    }
+
+    .hero-cta:hover::after { width: 68px; }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 48px;
+      right: 52px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      font-size: .62rem;
+      font-weight: 300;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      writing-mode: vertical-rl;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 1.6s;
+    }
+
+    .hero-scroll::before {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 52px;
+      background: linear-gradient(to bottom, transparent, var(--muted));
+    }
+
+    /* ── INTRO STRIP ─────────────────────────────────── */
+    .strip {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 26px 52px;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      overflow: hidden;
+    }
+
+    .strip-item {
+      flex-shrink: 0;
+      font-size: .68rem;
+      font-weight: 300;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .strip-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ── SECTION SHARED ──────────────────────────────── */
+    section { padding: 120px 52px; }
+
+    .section-label {
+      font-size: .65rem;
+      font-weight: 300;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    /* ── ABOUT ───────────────────────────────────────── */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .about-text h2 {
+      font-family: var(--ff-serif);
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.12;
+      letter-spacing: -.01em;
+      color: var(--cream);
+      margin-bottom: 36px;
+    }
+
+    .about-text h2 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .about-text p {
+      font-size: .9rem;
+      font-weight: 200;
+      line-height: 1.8;
+      color: var(--cream-dim);
+      margin-bottom: 20px;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      filter: brightness(.75) saturate(.7);
+      display: block;
+    }
+
+    .about-caption {
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      background: var(--bg-warm);
+      border: 1px solid var(--line);
+      padding: 20px 28px;
+      font-family: var(--ff-serif);
+      font-size: 1.05rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--cream-dim);
+      max-width: 260px;
+      line-height: 1.5;
+    }
+
+    /* ── WHAT IS ─────────────────────────────────────── */
+    .what-is {
+      background: var(--bg-warm);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .what-is-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .what-is-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      margin-bottom: 80px;
+    }
+
+    .what-is-header h2 {
+      font-family: var(--ff-serif);
+      font-size: clamp(2.4rem, 4.5vw, 4.2rem);
+      font-weight: 300;
+      line-height: 1.08;
+      color: var(--cream);
+    }
+
+    .what-is-header h2 span {
+      display: block;
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .what-is-header .intro-para {
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .what-is-header .intro-para p {
+      font-size: .9rem;
+      font-weight: 200;
+      line-height: 1.8;
+      color: var(--cream-dim);
+    }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .pillar {
+      background: var(--bg-warm);
+      padding: 48px 40px;
+      transition: background .3s;
+    }
+
+    .pillar:hover { background: rgba(182,152,112,.05); }
+
+    .pillar-num {
+      font-family: var(--ff-serif);
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--line);
+      line-height: 1;
+      margin-bottom: 24px;
+      transition: color .3s;
+    }
+
+    .pillar:hover .pillar-num { color: var(--accent); }
+
+    .pillar h3 {
+      font-family: var(--ff-serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 16px;
+      letter-spacing: .01em;
+    }
+
+    .pillar p {
+      font-size: .83rem;
+      font-weight: 200;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    /* ── QUOTE ───────────────────────────────────────── */
+    .quote-section {
+      text-align: center;
+      padding: 100px 52px;
+    }
+
+    .quote-section blockquote {
+      font-family: var(--ff-serif);
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.3;
+      color: var(--cream);
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .quote-section cite {
+      display: block;
+      margin-top: 32px;
+      font-family: var(--ff-sans);
+      font-size: .68rem;
+      font-weight: 300;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-style: normal;
+    }
+
+    /* ── CLASSES ─────────────────────────────────────── */
+    .classes-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .classes-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 64px;
+    }
+
+    .classes-header h2 {
+      font-family: var(--ff-serif);
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--cream);
+    }
+
+    .classes-header h2 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .classes-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      background: var(--line);
+    }
+
+    .class-item {
+      background: var(--bg);
+      padding: 40px 44px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      gap: 24px;
+      cursor: default;
+      transition: background .3s;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .class-item:hover { background: var(--bg-warm); }
+
+    .class-item:last-child { border-bottom: none; }
+
+    .class-item:nth-child(2n) { border-left: none; }
+
+    .class-name {
+      font-family: var(--ff-serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+
+    .class-desc {
+      font-size: .82rem;
+      font-weight: 200;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .class-tag {
+      font-size: .62rem;
+      font-weight: 300;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(182,152,112,.3);
+      padding: 6px 12px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ── APPROACH / PHILOSOPHY ───────────────────────── */
+    .philosophy {
+      background: var(--bg-warm);
+      border-top: 1px solid var(--line);
+    }
+
+    .philosophy-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 100px;
+      align-items: start;
+    }
+
+    .philosophy-sticky {
+      position: sticky;
+      top: 120px;
+    }
+
+    .philosophy-sticky h2 {
+      font-family: var(--ff-serif);
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.12;
+      color: var(--cream);
+    }
+
+    .philosophy-sticky h2 em {
+      display: block;
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .values {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .value-item {
+      padding: 40px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .value-item:first-child { border-top: 1px solid var(--line); }
+
+    .value-item h3 {
+      font-family: var(--ff-serif);
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 14px;
+    }
+
+    .value-item p {
+      font-size: .86rem;
+      font-weight: 200;
+      line-height: 1.78;
+      color: var(--cream-dim);
+    }
+
+    /* ── SCHEDULE BANNER ─────────────────────────────── */
+    .banner {
+      padding: 80px 52px;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .banner h2 {
+      font-family: var(--ff-serif);
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--bg);
+    }
+
+    .banner h2 em {
+      font-style: italic;
+    }
+
+    .banner-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      font-size: .75rem;
+      font-weight: 400;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--bg);
+      text-decoration: none;
+      flex-shrink: 0;
+      border: 1px solid rgba(11,9,8,.3);
+      padding: 18px 36px;
+      transition: background .3s, color .3s;
+    }
+
+    .banner-link:hover {
+      background: var(--bg);
+      color: var(--accent);
+    }
+
+    /* ── TEACHERS ────────────────────────────────────── */
+    .teachers-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .teachers-inner h2 {
+      font-family: var(--ff-serif);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--cream);
+      margin-bottom: 64px;
+    }
+
+    .teachers-inner h2 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .teacher-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .teacher-card {
+      border: 1px solid var(--line);
+      padding: 36px 32px;
+    }
+
+    .teacher-icon {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+      font-family: var(--ff-serif);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .teacher-card h3 {
+      font-family: var(--ff-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+
+    .teacher-card p {
+      font-size: .82rem;
+      font-weight: 200;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    /* ── CONTACT ─────────────────────────────────────── */
+    .contact {
+      background: var(--bg-warm);
+      border-top: 1px solid var(--line);
+    }
+
+    .contact-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+
+    .contact-left h2 {
+      font-family: var(--ff-serif);
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--cream);
+      margin-bottom: 36px;
+    }
+
+    .contact-left h2 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .contact-left p {
+      font-size: .88rem;
+      font-weight: 200;
+      line-height: 1.8;
+      color: var(--cream-dim);
+      margin-bottom: 40px;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: .72rem;
+      font-weight: 400;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--cream);
+      text-decoration: none;
+      padding: 18px 40px;
+      transition: background .3s;
+    }
+
+    .contact-btn:hover { background: var(--accent); }
+
+    .contact-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 40px;
+    }
+
+    .contact-item h4 {
+      font-size: .65rem;
+      font-weight: 300;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .contact-item p, .contact-item a {
+      font-family: var(--ff-serif);
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--cream);
+      text-decoration: none;
+    }
+
+    .contact-item a:hover { color: var(--accent); }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 32px 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: var(--ff-serif);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-logo em { font-style: italic; color: var(--accent); }
+
+    .footer-copy {
+      font-size: .65rem;
+      font-weight: 200;
+      letter-spacing: .1em;
+      color: var(--muted);
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 28px;
+    }
+
+    .footer-socials a {
+      font-size: .62rem;
+      font-weight: 300;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .3s;
+    }
+
+    .footer-socials a:hover { color: var(--cream); }
+
+    /* ── ANIMATIONS ──────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .22s; }
+    .reveal-delay-3 { transition-delay: .34s; }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 960px) {
+      nav { padding: 24px 28px; }
+      .nav-links { display: none; }
+      section { padding: 80px 28px; }
+      .hero { padding: 0 28px 52px; }
+      .hero-scroll { right: 28px; }
+      .strip { padding: 20px 28px; gap: 28px; }
+      .about { grid-template-columns: 1fr; gap: 48px; }
+      .about-visual { order: -1; }
+      .about-caption { display: none; }
+      .what-is-header { grid-template-columns: 1fr; gap: 32px; }
+      .pillars { grid-template-columns: 1fr; }
+      .classes-list { grid-template-columns: 1fr; }
+      .philosophy-inner { grid-template-columns: 1fr; gap: 48px; }
+      .philosophy-sticky { position: static; }
+      .teacher-grid { grid-template-columns: 1fr; gap: 16px; }
+      .contact-inner { grid-template-columns: 1fr; gap: 56px; }
+      .banner { flex-direction: column; align-items: flex-start; padding: 56px 28px; }
+      footer { flex-direction: column; gap: 20px; text-align: center; padding: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">body<em>&</em>mind</a>
+    <ul class="nav-links">
+      <li><a href="#practice">практика</a></li>
+      <li><a href="#classes">занятия</a></li>
+      <li><a href="#philosophy">подход</a></li>
+      <li><a href="#contact">контакты</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Главная">
+    <img
+      class="hero-img"
+      src="images_1778604911361-985c0cacac06-3fede48e9c644acbe4c7"
+      alt="Хатха йога — тело и ум"
+    >
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">хатха йога · студия</p>
+      <h1 class="hero-title">
+        body<span class="amp">&amp;</span><span class="part2">mind</span>
+      </h1>
+      <p class="hero-sub">
+        Пространство, где тело встречается с умом. Традиционная хатха йога — практика для тех, кто хочет замедлиться и услышать себя.
+      </p>
+      <a href="#practice" class="hero-cta">Узнать больше</a>
+    </div>
+
+    <span class="hero-scroll">прокрутить</span>
+  </section>
+
+  <!-- STRIP -->
+  <div class="strip">
+    <span class="strip-item">хатха йога</span>
+    <span class="strip-dot"></span>
+    <span class="strip-item">пранаяма</span>
+    <span class="strip-dot"></span>
+    <span class="strip-item">медитация</span>
+    <span class="strip-dot"></span>
+    <span class="strip-item">для всех уровней</span>
+    <span class="strip-dot"></span>
+    <span class="strip-item">индивидуальные занятия</span>
+    <span class="strip-dot"></span>
+    <span class="strip-item">малые группы</span>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="practice" aria-label="О студии">
+    <div class="about">
+      <div class="about-text reveal">
+        <p class="section-label">о нас</p>
+        <h2>Место, куда возвращаются <em>к себе</em></h2>
+        <p>Мы создали пространство, в котором практика — это не тренировка и не обязательство. Это время, которое вы выделяете для себя. Без спешки, без сравнений, без ожиданий.</p>
+        <p>Хатха йога в body&amp;mind — это работа с телом через осознанное движение, дыхание и присутствие. Каждое занятие выстроено так, чтобы вы выходили с коврика чуть более целыми, чем пришли.</p>
+        <p>Нас не интересует гибкость ради гибкости. Нас интересует то, что происходит внутри, пока тело движется.</p>
+      </div>
+      <div class="about-visual reveal reveal-delay-2">
+        <img
+          class="about-img"
+          src="images_1778604910842-985c0cacac06-2712de0db0d5d5440ebb"
+          alt="Практика хатха йоги"
+        >
+        <div class="about-caption">
+          «Тело — это не то, чем ты являешься. Это то, в чём ты живёшь.»
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IS HATHA -->
+  <section class="what-is" aria-label="Что такое хатха йога">
+    <div class="what-is-inner">
+      <div class="what-is-header">
+        <div class="reveal">
+          <p class="section-label">практика</p>
+          <h2>Что такое <span>хатха йога</span></h2>
+        </div>
+        <div class="intro-para reveal reveal-delay-2">
+          <p>Хатха йога — одна из древнейших и наиболее полных систем работы с телом и сознанием. Она объединяет асаны, пранаяму и медитацию в целостную практику, которая помогает найти баланс — не только на коврике, но и в повседневной жизни.</p>
+        </div>
+      </div>
+
+      <div class="pillars">
+        <div class="pillar reveal">
+          <div class="pillar-num">01</div>
+          <h3>Асаны</h3>
+          <p>Позы в хатха йоге — не цель, а инструмент. Через статику и медленное движение тело учится расслабляться там, где привыкло напрягаться, и укрепляться там, где привыкло избегать усилия.</p>
+        </div>
+        <div class="pillar reveal reveal-delay-1">
+          <div class="pillar-num">02</div>
+          <h3>Пранаяма</h3>
+          <p>Дыхание — это первое, что реагирует на стресс, и последнее, что мы умеем контролировать. Пранаяма возвращает способность дышать осознанно и глубоко, влияя на нервную систему и состояние ума.</p>
+        </div>
+        <div class="pillar reveal reveal-delay-2">
+          <div class="pillar-num">03</div>
+          <h3>Медитация</h3>
+          <p>Тишина — это тоже практика. Медитация в конце каждого занятия помогает интегрировать всё, что произошло с телом и умом за время урока. Это момент, ради которого стоит прийти.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <div class="quote-section reveal" aria-label="Цитата">
+    <blockquote>
+      «Йога — это не то, что вы делаете. Это то, чем вы становитесь в процессе.»
+    </blockquote>
+    <cite>из философии body&amp;mind</cite>
+  </div>
+
+  <!-- CLASSES -->
+  <section id="classes" aria-label="Занятия">
+    <div class="classes-inner">
+      <div class="classes-header reveal">
+        <div>
+          <p class="section-label">занятия</p>
+          <h2>Что мы<br><em>предлагаем</em></h2>
+        </div>
+      </div>
+
+      <div class="classes-list">
+        <div class="class-item reveal">
+          <div>
+            <div class="class-name">Хатха для начинающих</div>
+            <p class="class-desc">Мягкое введение в практику. Мы разбираем базовые позы, учимся слушать тело и понимать принципы движения. Идеально для тех, кто никогда не занимался или делал долгий перерыв.</p>
+          </div>
+          <span class="class-tag">начальный</span>
+        </div>
+        <div class="class-item reveal reveal-delay-1">
+          <div>
+            <div class="class-name">Открытая хатха</div>
+            <p class="class-desc">Класс для тех, кто уже знаком с основами. Более длительное удержание поз, глубокая работа с дыханием и внимание к тонким ощущениям внутри практики.</p>
+          </div>
+          <span class="class-tag">средний</span>
+        </div>
+        <div class="class-item reveal">
+          <div>
+            <div class="class-name">Пранаяма и медитация</div>
+            <p class="class-desc">Отдельный класс, посвящённый работе с дыханием и успокоению ума. Никаких асан — только сидячая практика, осознанность и тишина. Трансформирующий опыт для любого уровня.</p>
+          </div>
+          <span class="class-tag">любой уровень</span>
+        </div>
+        <div class="class-item reveal reveal-delay-1">
+          <div>
+            <div class="class-name">Индивидуальные занятия</div>
+            <p class="class-desc">Работа один на один с преподавателем. Программа выстраивается под вашу историю тела, цели и ограничения. Формат, в котором возможно то, что в группе нельзя.</p>
+          </div>
+          <span class="class-tag">персональный</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section class="philosophy" id="philosophy" aria-label="Подход">
+    <div class="philosophy-inner">
+      <div class="philosophy-sticky reveal">
+        <p class="section-label">подход</p>
+        <h2>Как мы <em>работаем</em></h2>
+      </div>
+
+      <div class="values">
+        <div class="value-item reveal">
+          <h3>Без насилия над телом</h3>
+          <p>Мы не верим в боль как признак прогресса. Хатха йога — это диалог с телом, а не монолог эго. Темп практики, глубина поз, длина удержания — всё это подстраивается под вас, а не вы под схему.</p>
+        </div>
+        <div class="value-item reveal">
+          <h3>Маленькие группы</h3>
+          <p>В наших классах не бывает толпы. Максимум восемь человек — это не маркетинг, это необходимость. Преподаватель должен видеть каждого, слышать каждое дыхание, замечать то, что сам ученик ещё не замечает.</p>
+        </div>
+        <div class="value-item reveal">
+          <h3>Регулярность важнее интенсивности</h3>
+          <p>Один час в неделю, который вы действительно проживаете, — ценнее пяти часов, которые вы отбываете. Мы помогаем выстроить практику, которой хочется придерживаться — не потому что надо, а потому что она работает.</p>
+        </div>
+        <div class="value-item reveal">
+          <h3>Традиция с живым языком</h3>
+          <p>Хатха йога — древняя система, но мы говорим о ней современно и понятно. Без избыточной терминологии на санскрите, без ритуалов ради ритуалов. Только то, что помогает вам понять, что происходит с вашим телом и умом.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER -->
+  <div class="banner reveal" aria-label="Расписание">
+    <h2>Начните свою практику <em>сегодня</em></h2>
+    <a href="#contact" class="banner-link">Записаться на занятие</a>
+  </div>
+
+  <!-- TEACHERS -->
+  <section aria-label="Преподаватели">
+    <div class="teachers-inner">
+      <p class="section-label reveal">преподаватели</p>
+      <h2 class="reveal">Люди, которые <em>ведут</em></h2>
+
+      <div class="teacher-grid">
+        <div class="teacher-card reveal">
+          <div class="teacher-icon">А</div>
+          <h3>Анна Светлова</h3>
+          <p>Преподаёт хатха йогу 11 лет. Обучалась в Индии и России. Специализируется на работе с начинающими и с теми, кто восстанавливается после травм.</p>
+        </div>
+        <div class="teacher-card reveal reveal-delay-1">
+          <div class="teacher-icon">М</div>
+          <h3>Михаил Краснов</h3>
+          <p>Практикует йогу 14 лет, из них 8 — преподаёт. Ведёт открытые классы и пранаяму. Убеждён, что дыхание — это единственный инструмент, который всегда с нами.</p>
+        </div>
+        <div class="teacher-card reveal reveal-delay-2">
+          <div class="teacher-icon">Е</div>
+          <h3>Елена Фёдорова</h3>
+          <p>Специалист по индивидуальной работе. Работает с людьми, у которых есть ограничения — хронические боли, постоперационное состояние, стресс. Адаптирует практику под реальное тело.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact" aria-label="Контакты">
+    <div class="contact-inner">
+      <div class="contact-left reveal">
+        <p class="section-label">контакты</p>
+        <h2>Приходите.<br><em>Будем рады.</em></h2>
+        <p>Первое пробное занятие бесплатно. Просто напишите нам — и мы подберём класс, который подойдёт именно вам.</p>
+        <a href="mailto:hello@bodyandmind.ru" class="contact-btn">Написать нам</a>
+      </div>
+
+      <div class="contact-right reveal reveal-delay-2">
+        <div class="contact-item">
+          <h4>адрес</h4>
+          <p>Москва, ул. Пречистенка, 22<br>3 этаж, студия 8</p>
+        </div>
+        <div class="contact-item">
+          <h4>телефон</h4>
+          <a href="tel:+74951234567">+7 495 123-45-67</a>
+        </div>
+        <div class="contact-item">
+          <h4>email</h4>
+          <a href="mailto:hello@bodyandmind.ru">hello@bodyandmind.ru</a>
+        </div>
+        <div class="contact-item">
+          <h4>расписание</h4>
+          <p>Пн–Пт: 7:00 – 21:00<br>Сб–Вс: 9:00 – 18:00</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#" class="footer-logo">body<em>&</em>mind</a>
+    <p class="footer-copy">© 2025 body&amp;mind. Студия хатха йоги.</p>
+    <div class="footer-socials">
+      <a href="#">Instagram</a>
+      <a href="#">Telegram</a>
+      <a href="#">ВКонтакте</a>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>

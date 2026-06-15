@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Нагрузка и эффективность кураторов — июнь 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    padding: 24px 16px 60px;
+  }
+
+  .container { max-width: 760px; margin: 0 auto; }
+
+  header {
+    background: #1d1d1f;
+    color: #fff;
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+  header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  header p  { font-size: 14px; color: #afafaf; }
+
+  .section {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #6e6e73;
+    margin-bottom: 16px;
+  }
+
+  /* ranked list */
+  .ranked-list { list-style: none; }
+  .ranked-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid #f2f2f2;
+    font-size: 15px;
+  }
+  .ranked-list li:last-child { border-bottom: none; }
+  .rank {
+    min-width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #f2f2f2;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    color: #6e6e73;
+    flex-shrink: 0;
+  }
+  .name { flex: 1; }
+  .badge {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .badge-load {
+    background: #f2f2f2;
+    color: #1d1d1f;
+  }
+  .badge-red   { background: #ffe5e5; color: #c0392b; }
+  .badge-warn  { background: #fff3e0; color: #b07d00; }
+  .badge-ok    { background: #e8f5e9; color: #2e7d32; }
+
+  /* correlation */
+  .corr-block { font-size: 15px; line-height: 1.7; color: #3a3a3c; }
+  .corr-block strong { color: #1d1d1f; }
+  .corr-block p + p { margin-top: 12px; }
+
+  .insight {
+    background: #f5f5f7;
+    border-left: 3px solid #1d1d1f;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 16px;
+    color: #3a3a3c;
+  }
+
+  /* solutions */
+  .solutions { list-style: none; counter-reset: sol; }
+  .solutions li {
+    counter-increment: sol;
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #f2f2f2;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .solutions li:last-child { border-bottom: none; }
+  .solutions li::before {
+    content: counter(sol);
+    min-width: 28px; height: 28px;
+    border-radius: 50%;
+    background: #1d1d1f;
+    color: #fff;
+    font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .solutions li strong { display: block; margin-bottom: 3px; color: #1d1d1f; }
+
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: #afafaf;
+    margin-top: 32px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>Нагрузка и эффективность кураторов</h1>
+    <p>Период: 01.06 – 15.06.2026 &nbsp;·&nbsp; Сформировано: 15.06.2026 &nbsp;·&nbsp; Кураторов в команде: 17</p>
+  </header>
+
+  <!-- НАГРУЗКА -->
+  <div class="section">
+    <div class="section-title">📦 Нагрузка — от большей к меньшей</div>
+    <ul class="ranked-list">
+      <li><span class="rank">1</span><span class="name">Антон Хапинский</span><span class="badge badge-load">индекс 24 · 11 синх + 2 асинх</span></li>
+      <li><span class="rank">2</span><span class="name">Искандар Гафаров</span><span class="badge badge-load">индекс 24 · 12 синх + 0 асинх</span></li>
+      <li><span class="rank">3</span><span class="name">Никита Муркин</span><span class="badge badge-load">индекс 24 · 11 синх + 2 асинх</span></li>
+      <li><span class="rank">4</span><span class="name">Аня Дранчук</span><span class="badge badge-load">индекс 22 · 8 синх + 6 асинх</span></li>
+      <li><span class="rank">5</span><span class="name">Илья Барничев</span><span class="badge badge-load">индекс 22 · 9 синх + 4 асинх</span></li>
+      <li><span class="rank">6</span><span class="name">Аделина Рахматулина</span><span class="badge badge-load">индекс 20 · 8 синх + 4 асинх</span></li>
+      <li><span class="rank">7</span><span class="name">Никита Латышев</span><span class="badge badge-load">индекс 19 · 9 синх + 1 асинх</span></li>
+      <li><span class="rank">8</span><span class="name">Гурам Гокеян</span><span class="badge badge-load">индекс 18 · 6 синх + 6 асинх</span></li>
+      <li><span class="rank">9</span><span class="name">Ким Ктоян</span><span class="badge badge-load">индекс 18 · 6 синх + 6 асинх</span></li>
+      <li><span class="rank">10</span><span class="name">Роман Пелёдов</span><span class="badge badge-load">индекс 18 · 7 синх + 4 асинх</span></li>
+      <li><span class="rank">11</span><span class="name">Илья Барышников</span><span class="badge badge-load">индекс 17 · 6 синх + 5 асинх</span></li>
+      <li><span class="rank">12</span><span class="name">Илья Заяц</span><span class="badge badge-load">индекс 17 · 8 синх + 1 асинх</span></li>
+      <li><span class="rank">13</span><span class="name">Дмитрий Ларченков</span><span class="badge badge-load">индекс 16 · 7 синх + 2 асинх</span></li>
+      <li><span class="rank">14</span><span class="name">Сергей Федосеенко</span><span class="badge badge-load">индекс 15 · 5 синх + 5 асинх</span></li>
+      <li><span class="rank">15</span><span class="name">Ильдар Гареев</span><span class="badge badge-load">индекс 14 · 6 синх + 2 асинх</span></li>
+      <li><span class="rank">16</span><span class="name">Ольга Антипанова</span><span class="badge badge-load">индекс 10 · 4 синх + 2 асинх</span></li>
+      <li><span class="rank">17</span><span class="name">Кристина Сухалет</span><span class="badge badge-load">индекс 8 · 3 синх + 2 асинх</span></li>
+    </ul>
+  </div>
+
+  <!-- SLA ДЗ -->
+  <div class="section">
+    <div class="section-title">📝 SLA Домашние задания — от худшего к лучшему</div>
+    <ul class="ranked-list">
+      <li><span class="rank">1</span><span class="name">Антон Хапинский</span><span class="badge badge-red">🔴 26,00%</span></li>
+      <li><span class="rank">2</span><span class="name">Никита Муркин</span><span class="badge badge-red">🔴 18,58%</span></li>
+      <li><span class="rank">3</span><span class="name">Никита Латышев</span><span class="badge badge-red">🔴 16,67%</span></li>
+      <li><span class="rank">4</span><span class="name">Крис Кесслер</span><span class="badge badge-warn">⚠️ 14,29%</span></li>
+      <li><span class="rank">5</span><span class="name">Аня Дранчук</span><span class="badge badge-warn">⚠️ 6,00%</span></li>
+      <li><span class="rank">6</span><span class="name">Искандар Гафаров</span><span class="badge badge-ok">✅ 4,86%</span></li>
+      <li><span class="rank">7</span><span class="name">Гурам Гокеян</span><span class="badge badge-ok">✅ 2,92%</span></li>
+      <li><span class="rank">8</span><span class="name">Ким Ктоян</span><span class="badge badge-ok">✅ 2,48%</span></li>
+      <li><span class="rank">9</span><span class="name">Илья Барничев</span><span class="badge badge-ok">✅ 1,14%</span></li>
+      <li><span class="rank">10</span><span class="name">Сергей Федосеенко</span><span class="badge badge-ok">✅ 0,50%</span></li>
+      <li><span class="rank">11</span><span class="name">Илья Барышников</span><span class="badge badge-ok">✅ 0,41%</span></li>
+      <li><span class="rank">12</span><span class="name">Илья Заяц</span><span class="badge badge-ok">✅ 0,34%</span></li>
+      <li><span class="rank">13</span><span class="name">Роман Пелёдов</span><span class="badge badge-ok">✅ 0,00%</span></li>
+      <li><span class="rank">14</span><span class="name">Дмитрий Ларченков</span><span class="badge badge-ok">✅ 0,00%</span></li>
+      <li><span class="rank">15</span><span class="name">Ильдар Гареев</span><span class="badge badge-ok">✅ 0,00%</span></li>
+      <li><span class="rank">16</span><span class="name">Ольга Антипанова</span><span class="badge badge-ok">✅ 0,00%</span></li>
+      <li><span class="rank">17</span><span class="name">Аделина Рахматулина</span><span class="badge badge-ok">✅ 0,00%</span></li>
+    </ul>
+  </div>
+
+  <!-- SLA ЧАТЫ -->
+  <div class="section">
+    <div class="section-title">💬 SLA Чаты — от худшего к лучшему</div>
+    <ul class="ranked-list">
+      <li><span class="rank">1</span><span class="name">Ким Ктоян</span><span class="badge badge-red">🔴 29,47%</span></li>
+      <li><span class="rank">2</span><span class="name">Никита Муркин</span><span class="badge badge-red">🔴 20,69%</span></li>
+      <li><span class="rank">3</span><span class="name">Кристина Сухалет</span><span class="badge badge-red">🔴 20,00%</span></li>
+      <li><span class="rank">4</span><span class="name">Илья Заяц</span><span class="badge badge-red">🔴 16,67%</span></li>
+      <li><span class="rank">5</span><span class="name">Ольга Антипанова</span><span class="badge badge-red">🔴 16,67%</span></li>
+      <li><span class="rank">6</span><span class="name">Искандар Гафаров</span><span class="badge badge-warn">⚠️ 14,29%</span></li>
+      <li><span class="rank">7</span><span class="name">Антон Хапинский</span><span class="badge badge-warn">⚠️ 13,56%</span></li>
+      <li><span class="rank">8</span><span class="name">Ильдар Гареев</span><span class="badge badge-warn">⚠️ 7,84%</span></li>
+      <li><span class="rank">9</span><span class="name">Роман Пелёдов</span><span class="badge badge-warn">⚠️ 7,50%</span></li>
+      <li><span class="rank">10</span><span class="name">Сергей Федосеенко</span><span class="badge badge-ok">✅ 4,76%</span></li>
+      <li><span class="rank">11</span><span class="name">Дмитрий Ларченков</span><span class="badge badge-ok">✅ 3,85%</span></li>
+      <li><span class="rank">12</span><span class="name">Гурам Гокеян</span><span class="badge badge-ok">✅ 3,23%</span></li>
+      <li><span class="rank">13</span><span class="name">Аня Дранчук</span><span class="badge badge-ok">✅ 0,00%</span></li>
+      <li><span class="rank">14</span><span class="name">Аделина Рахматулина</span><span class="badge badge-ok">✅ 0,00%</span></li>
+      <li><span class="rank">15</span><span class="name">Илья Барничев</span><span class="badge badge-ok">✅ 0,00%</span></li>
+      <li><span class="rank">16</span><span class="name">Илья Барышников</span><span class="badge badge-ok">✅ 0,00%</span></li>
+      <li><span class="rank">17</span><span class="name">Никита Латышев</span><span class="badge badge-ok">✅ 0,00%</span></li>
+    </ul>
+  </div>
+
+  <!-- КОРРЕЛЯЦИЯ -->
+  <div class="section">
+    <div class="section-title">🔍 Корреляция нагрузки и эффективности</div>
+    <div class="corr-block">
+      <p><strong>Нагрузка объясняет проблемы с ДЗ, но не объясняет проблемы с чатами.</strong></p>
+      <p>По ДЗ зависимость прямая: все три куратора в красной зоне (Хапинский, Муркин, Латышев) входят в топ-7 по нагрузке. При 9–11 синхронных потоках ДЗ накапливаются быстрее, чем куратор успевает обработать. Искандар Гафаров — исключение: при максимальном индексе 24 ДЗ держит в норме (4,86%), но чаты проседают (14,29%) — 12 синхронных без асинхронных создают концентрированный поток вопросов.</p>
+      <p>По чатам картина другая. Ким Ктоян с индексом 18 — худший результат в команде (29,47% при 95 сообщениях). Илья Заяц и Ольга Антипанова нарушают SLA при индексах 17 и 10: 2 просрочки из 12 сообщений — это не перегруз, это режим. Кристина Сухалет — 1 просрочка из 5 при минимальной нагрузке.</p>
+      <div class="insight">
+        Три куратора с индексом 24 дают критичные нарушения по ДЗ — перегруз напрямую влияет на качество. Четыре куратора нарушают SLA чатов при нагрузке ниже средней — это поведенческая проблема, не структурная. Ким Ктоян — особый кейс: формальный индекс 18 не отражает реальный объём коммуникации (95 сообщений в чатах).
+      </div>
+    </div>
+  </div>
+
+  <!-- РЕШЕНИЯ -->
+  <div class="section">
+    <div class="section-title">✅ Варианты решений</div>
+    <ol class="solutions">
+      <li>
+        <div>
+          <strong>Передать 2 потока от Антона Хапинского</strong>
+          ДЗ 26% при индексе 24 — критично. По 1 потоку передать кураторам с низким ДЗ-объёмом и нулевой просрочкой: Ольга Антипанова (0%, индекс 10), Дмитрий Ларченков (0%, индекс 16).
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Снизить нагрузку Никиты Муркина</strong>
+          Двойное критичное нарушение — ДЗ 18,58% + чаты 20,69% при индексе 24. Снять 1 синхронный поток. Передать после адаптации п.1.
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Пересмотреть состав курсов Ким Ктоян</strong>
+          95 сообщений в чатах при индексе 18 — аномалия. Определить, какие из 6 асинхронных курсов генерируют наибольший поток, и заменить 2–3 на менее коммуникационно-интенсивные.
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>1:1 по дисциплине чатов: Заяц, Антипанова, Сухалет</strong>
+          У каждого ≤ 12 сообщений и 1–2 просрочки при нормальном ДЗ и нагрузке ниже средней. Разбор конкретных просроченных диалогов — режим работы, не объём.
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Мониторинг: Барничев и Рахматулина</strong>
+          Держат нулевые просрочки при индексах 22 и 20. Ресурс на пределе — при первых сигналах снять по 1 потоку превентивно, не дожидаясь провала KPI.
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <footer>Сформировано автоматически · kln-analyst → busy-analyst → correlation-engine · ZeroCoder Curators</footer>
+
+</div>
+</body>
+</html>
